@@ -11,7 +11,6 @@ namespace QL_Vat_Lieu_Xay_Dung_Data.Entities
     {
         public string FullName { get; set; }
         public DateTime? BirthDay { get; set; }
-        public decimal Balance { get; set; }
         public string Avatar { get; set; }
 
         public DateTime DateCreated { get; set; }
