@@ -5,14 +5,12 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 using QL_Vat_Lieu_Xay_Dung_Data.Enums;
-using QL_Vat_Lieu_Xay_Dung_Data.Interfaces;
-using QL_Vat_Lieu_Xay_Dung_Infrastructure.SharedKernel;
 
-namespace QL_Vat_Lieu_Xay_Dung_Data.Entities
+namespace QL_Vat_Lieu_Xay_Dung_Services.ViewModels.Product
 {
-    [Table("Products")]
-    public class Product : DomainEntity<int>, ISwitchable, IDateTracking,IHasSeoMetaData
+    public class ProductViewModel
     {
+        public int Id { get; set; }
         [StringLength(255)]
         [Required]
         public string Name { get; set; }
@@ -53,8 +51,6 @@ namespace QL_Vat_Lieu_Xay_Dung_Data.Entities
         public string SeoDescription { get; set; }
 
 
-        [ForeignKey("CategoryId")]
-        public virtual ProductCategory ProductCategory { get; set; }
-
+        public ProductCategoryViewModel ProductCategory { get; set; }
     }
 }

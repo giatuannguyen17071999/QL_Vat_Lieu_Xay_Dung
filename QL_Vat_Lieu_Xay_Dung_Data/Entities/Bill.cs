@@ -15,7 +15,7 @@ namespace QL_Vat_Lieu_Xay_Dung_Data.Entities
         public Bill() { }
 
         public Bill(string customerName, string customerAddress, string customerMobile, string customerMessage,
-            BillStatus billStatus, PaymentMethod paymentMethod, Status status, string customerId)
+            BillStatus billStatus, PaymentMethod paymentMethod, Status status, Guid customerId)
         {
             CustomerName = customerName;
             CustomerAddress = customerAddress;
@@ -28,7 +28,7 @@ namespace QL_Vat_Lieu_Xay_Dung_Data.Entities
         }
 
         public Bill(int id, string customerName, string customerAddress, string customerMobile, string customerMessage,
-            BillStatus billStatus, PaymentMethod paymentMethod, Status status, string customerId)
+            BillStatus billStatus, PaymentMethod paymentMethod, Status status, Guid customerId)
         {
             Id = id;
             CustomerName = customerName;
@@ -56,8 +56,7 @@ namespace QL_Vat_Lieu_Xay_Dung_Data.Entities
         public PaymentMethod PaymentMethod { set; get; }
 
         public BillStatus BillStatus { set; get; }
-        [StringLength(450)]
-        public string CustomerId { set; get; }
+        public Guid CustomerId { set; get; }
 
         public Status Status { get; set; }
         public DateTime DateCreated { get; set; }

@@ -16,10 +16,26 @@ namespace QL_Vat_Lieu_Xay_Dung_Data.Entities
         {
             Products = new List<Product>();
         }
+
+        public ProductCategory(string name, int? parentId, int? homeOrder,
+            string image, bool? homeFlag, int sortOrder, Status status, string seoPageTitle, string seoAlias,
+            string seoKeywords, string seoDescription)
+        {
+            Name = name;
+            ParentId = parentId;
+            HomeOrder = homeOrder;
+            Image = image;
+            HomeFlag = homeFlag;
+            SortOrder = sortOrder;
+            Status = status;
+            SeoPageTitle = seoPageTitle;
+            SeoAlias = seoAlias;
+            SeoKeywords = seoKeywords;
+            SeoDescription = seoDescription;
+        }
         [StringLength(255)]
         [Required]
         public string Name { get; set; }
-        public string Description { get; set; }
         public int? ParentId { get; set; }
         public int? HomeOrder { get; set; }
         public string Image { get; set; }
@@ -29,7 +45,7 @@ namespace QL_Vat_Lieu_Xay_Dung_Data.Entities
         public DateTime DateCreated { get; set; }
         public DateTime DateModified { get; set; }
         public string SeoPageTitle { get; set; }
-        [Column(TypeName = "varchar")]
+        [Column(TypeName = "varchar(255)")]
         public string SeoAlias { get; set; }
         [StringLength(255)]
         public string SeoKeywords { get; set; }

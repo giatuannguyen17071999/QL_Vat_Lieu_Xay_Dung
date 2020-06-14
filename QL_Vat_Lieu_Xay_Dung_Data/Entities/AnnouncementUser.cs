@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using QL_Vat_Lieu_Xay_Dung_Infrastructure.SharedKernel;
 
@@ -7,18 +8,13 @@ namespace QL_Vat_Lieu_Xay_Dung_Data.Entities
     [Table("AnnouncementUsers")]
     public class AnnouncementUser : DomainEntity<int>
     {
-        [StringLength(128)]
-        [Required]
-        public string AnnouncementId { get; set; }
-
-        [StringLength(450)]
-        [Required]
-        public string UserId { get; set; }
+        public Guid UserId { get; set; }
 
         public bool? HasRead { get; set; }
 
-        [ForeignKey("UserId")]
-        public virtual AppUser AppUser { get; set; }
+    
+        public string AnnouncementId { get; set; }
+
 
         [ForeignKey("AnnouncementId")]
         public virtual Announcement Announcement { get; set; }

@@ -11,9 +11,8 @@ namespace QL_Vat_Lieu_Xay_Dung_Data.Entities
     public class Permission : DomainEntity<int>
     {
         // Phân Quyền
-        [StringLength(450)]
         [Required]
-        public string RoleId { get; set; }
+        public Guid RoleId { get; set; }
 
         [StringLength(128)]
         [Required]
