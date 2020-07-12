@@ -35,6 +35,7 @@ namespace QL_Vat_Lieu_Xay_Dung_Data_EF
         public DbSet<Permission> Permissions { set; get; }
         public DbSet<Product> Products { set; get; }
         public DbSet<ProductCategory> ProductCategories { set; get; }
+        public DbSet<ProductTag> ProductTags { set; get; }
         public DbSet<ProductImage> ProductImages { set; get; }
         public DbSet<ProductQuantity> ProductQuantities { set; get; }
         public DbSet<Size> Sizes { set; get; }
@@ -47,7 +48,7 @@ namespace QL_Vat_Lieu_Xay_Dung_Data_EF
             builder.Entity<IdentityUserClaim<Guid>>().ToTable("AppUserClaims").HasKey(x => x.Id);
             builder.Entity<IdentityRoleClaim<Guid>>().ToTable("AppRoleClaims").HasKey(x => x.Id);
             builder.Entity<IdentityUserLogin<Guid>>().ToTable("AppUserLogins").HasKey(c => c.UserId);
-            builder.Entity<IdentityUserRole<Guid>>().ToTable("AppUserRoles").HasKey(c => new {c.RoleId, c.UserId});
+            builder.Entity<IdentityUserRole<Guid>>().ToTable("AppUserRoles").HasKey(c => new { c.RoleId, c.UserId });
             builder.Entity<IdentityUserToken<Guid>>().ToTable("AppUserTokens").HasKey(x => x.UserId);
 
             builder.AddConfiguration(new TagConfiguration());
@@ -55,6 +56,8 @@ namespace QL_Vat_Lieu_Xay_Dung_Data_EF
             builder.AddConfiguration(new FooterConfiguration());
             builder.AddConfiguration(new FunctionConfiguration());
             builder.AddConfiguration(new SystemConfigConfiguration());
+            builder.AddConfiguration(new ProductTagConfiguration());
+            // base.OnModelCreating(builder);
 
         }
 

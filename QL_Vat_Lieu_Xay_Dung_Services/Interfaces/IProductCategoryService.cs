@@ -7,11 +7,13 @@ namespace QL_Vat_Lieu_Xay_Dung_Services.Interfaces
 {
     public interface IProductCategoryService
     {
-        ProductCategoryViewModel Add(ProductCategoryViewModel productCategoryVm);
+        ProductCategoryViewModel Add(ProductCategoryViewModel productCategoryViewModel);
 
-        void Update(ProductCategoryViewModel productCategoryVm);
+        void Update(ProductCategoryViewModel productCategoryViewModel);
 
         void Delete(int id);
+
+        List<ProductCategoryViewModel> GetByAlias(string alias);
 
         List<ProductCategoryViewModel> GetAll();
 

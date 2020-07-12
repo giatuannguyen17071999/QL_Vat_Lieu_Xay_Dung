@@ -6,7 +6,6 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using QL_Vat_Lieu_Xay_Dung_Data.Entities;
 using QL_Vat_Lieu_Xay_Dung_Data.Enums;
-using QL_Vat_Lieu_Xay_Dung_Data.IRepositories;
 using QL_Vat_Lieu_Xay_Dung_Infrastructure.Interfaces;
 using QL_Vat_Lieu_Xay_Dung_Services.Interfaces;
 using QL_Vat_Lieu_Xay_Dung_Services.ViewModels.Product;
@@ -16,37 +15,42 @@ namespace QL_Vat_Lieu_Xay_Dung_Services.Implementation
     public class ProductCategoryService : IProductCategoryService
     {
         private readonly IMapper _mapper;
-        private readonly IProductCategoryRepository _productCategoryRepository;
+        private readonly IRepository<ProductCategory, int> _productCategoryRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public ProductCategoryService(IProductCategoryRepository productCategoryRepository,IUnitOfWork unitOfWork, IMapper mapper)
+        public ProductCategoryService(IRepository<ProductCategory, int> productCategoryRepository,IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _productCategoryRepository = productCategoryRepository;
 
         }
-        public ProductCategoryViewModel Add(ProductCategoryViewModel productCategoryVm)
+        public ProductCategoryViewModel Add(ProductCategoryViewModel productCategoryViewModel)
         {
-            var productCategory = _mapper.Map<ProductCategoryViewModel, ProductCategory>(productCategoryVm);
+            var productCategory = _mapper.Map<ProductCategoryViewModel, ProductCategory>(productCategoryViewModel);
             _productCategoryRepository.Add(productCategory);
-            return productCategoryVm;
+            return productCategoryViewModel;
 
         }
 
-        public void Update(ProductCategoryViewModel productCategoryVm)
+        public void Update(ProductCategoryViewModel productCategoryViewModel)
         {
-            throw new NotImplementedException();
+            var productCategory = _mapper.Map<ProductCategoryViewModel, ProductCategory>(productCategoryViewModel);
+            _productCategoryRepository.Update(productCategory);
         }
 
         public void Delete(int id)
         {
             _productCategoryRepository.Remove(id);
         }
+        public List<ProductCategoryViewModel> GetByAlias(string alias)
+        {
+            return _mapper.ProjectTo<ProductCategoryViewModel>(_productCategoryRepository.FindAll(x => x.SeoAlias == alias)).ToList();
+        }
 
         public List<ProductCategoryViewModel> GetAll()
         {
-            return _productCategoryRepository.FindAll().OrderBy(x => x.ParentId).ProjectTo<ProductCategoryViewModel>(_mapper.ConfigurationProvider)
+            return _mapper.ProjectTo<ProductCategoryViewModel>(_productCategoryRepository.FindAll().OrderBy(x => x.ParentId))
                 .ToList();
         }
 
@@ -54,20 +58,17 @@ namespace QL_Vat_Lieu_Xay_Dung_Services.Implementation
         {
             if (!string.IsNullOrEmpty(keyword))
             {
-                return _productCategoryRepository
-                    .FindAll(x => x.Name.Contains(keyword)).OrderBy(x => x.ParentId)
-                    .ProjectTo<ProductCategoryViewModel>(_mapper.ConfigurationProvider).ToList();
+                return _mapper.ProjectTo<ProductCategoryViewModel>(_productCategoryRepository
+                    .FindAll(x => x.Name.Contains(keyword)).OrderBy(x => x.ParentId)).ToList();
 
             }
             else
-                return _productCategoryRepository.FindAll().OrderBy(x => x.ParentId)
-                    .ProjectTo<ProductCategoryViewModel>(_mapper.ConfigurationProvider).ToList();
+                return _mapper.ProjectTo<ProductCategoryViewModel>(_productCategoryRepository.FindAll().OrderBy(x => x.ParentId)).ToList();
         }
 
         public List<ProductCategoryViewModel> GetAllByParentId(int parentId)
         {
-            return _productCategoryRepository.FindAll(x => x.Status == Status.Active && x.ParentId == parentId)
-                .ProjectTo<ProductCategoryViewModel>(_mapper.ConfigurationProvider).ToList();
+            return _mapper.ProjectTo<ProductCategoryViewModel>(_productCategoryRepository.FindAll(x => x.Status == Status.Active && x.ParentId == parentId)).ToList();
         }
 
         public ProductCategoryViewModel GetById(int id)
@@ -77,18 +78,33 @@ namespace QL_Vat_Lieu_Xay_Dung_Services.Implementation
 
         public void UpdateParentId(int sourceId, int targetId, Dictionary<int, int> items)
         {
-            throw new NotImplementedException();
+            var sourceCategory = _productCategoryRepository.FindById(sourceId);
+            sourceCategory.ParentId = targetId;
+            _productCategoryRepository.Update(sourceCategory);
+
+            var sibling = _productCategoryRepository.FindAll(x => items.Keys.Contains(x.Id));
+            foreach (var child in sibling)
+            {
+                child.SortOrder = items[child.Id];
+                _productCategoryRepository.Update(child);
+            }
         }
 
         public void ReOrder(int sourceId, int targetId)
         {
-            throw new NotImplementedException();
+            var source = _productCategoryRepository.FindById(sourceId);
+            var target = _productCategoryRepository.FindById(targetId);
+            var tmpOrder = source.SortOrder;
+            source.SortOrder = target.SortOrder;
+            target.SortOrder = tmpOrder;
+            _productCategoryRepository.Update(source);
+            _productCategoryRepository.Update(target);
         }
 
         public List<ProductCategoryViewModel> GetHomeCategories(int top)
         {
-            return _productCategoryRepository.FindAll(x => x.HomeFlag, c => c.Products).OrderBy(x => x.HomeOrder)
-                .Take(top).ProjectTo<ProductCategoryViewModel>(_mapper.ConfigurationProvider).ToList();
+            return _mapper.ProjectTo<ProductCategoryViewModel>(_productCategoryRepository.FindAll(x => x.HomeFlag, c => c.Products).OrderBy(x => x.HomeOrder)
+                .Take(top)).ToList();
 
         }
 

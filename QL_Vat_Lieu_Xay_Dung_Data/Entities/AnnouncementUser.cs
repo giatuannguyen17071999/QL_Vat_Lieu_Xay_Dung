@@ -12,7 +12,6 @@ namespace QL_Vat_Lieu_Xay_Dung_Data.Entities
 
         public bool? HasRead { get; set; }
 
-    
         public string AnnouncementId { get; set; }
 
 

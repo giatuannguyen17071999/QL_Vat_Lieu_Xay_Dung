@@ -8,24 +8,6 @@ namespace QL_Vat_Lieu_Xay_Dung_Data.Entities
     {
         public BillDetail() { }
 
-        public BillDetail(int id, int billId, int productId, int quantity, decimal price, int sizeId)
-        {
-            Id = id;
-            BillId = billId;
-            ProductId = productId;
-            Quantity = quantity;
-            Price = price;
-            SizeId = sizeId;
-        }
-
-        public BillDetail(int billId, int productId, int quantity, decimal price, int sizeId)
-        {
-            BillId = billId;
-            ProductId = productId;
-            Quantity = quantity;
-            Price = price;
-            SizeId = sizeId;
-        }
         public int BillId { set; get; }
 
         public int ProductId { set; get; }

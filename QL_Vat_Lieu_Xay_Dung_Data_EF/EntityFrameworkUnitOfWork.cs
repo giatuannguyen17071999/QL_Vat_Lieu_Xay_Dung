@@ -16,14 +16,15 @@ namespace QL_Vat_Lieu_Xay_Dung_Data_EF
             _context = context;
         }
 
-        public void Dispose()
-        {
-            _context.Dispose();
-        }
 
         public void Commit()
         {
             _context.SaveChanges();
+        }
+
+        public void Dispose()
+        {
+            _context?.Dispose();
         }
     }
 }

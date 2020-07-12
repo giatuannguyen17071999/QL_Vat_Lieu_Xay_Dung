@@ -26,6 +26,16 @@ namespace QL_Vat_Lieu_Xay_Dung_Data.Entities
             this.SortOrder = sortOrder;
             this.Status = Status.Active;
         }
+        public Function(string id,string name, string url, string parentId, string iconCss, int sortOrder)
+        {
+            this.Id = id;
+            this.Name = name;
+            this.URL = url;
+            this.ParentId = parentId;
+            this.IconCss = iconCss;
+            this.SortOrder = sortOrder;
+            this.Status = Status.Active;
+        }
         [Required]
         [StringLength(128)]
         public string Name { set; get; }

@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using QL_Vat_Lieu_Xay_Dung_WebApp.Extensions;
 using QL_Vat_Lieu_Xay_Dung_WebApp.Models;
 
 namespace QL_Vat_Lieu_Xay_Dung_WebApp.Controllers
 {
+
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

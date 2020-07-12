@@ -15,7 +15,7 @@ namespace QL_Vat_Lieu_Xay_Dung_Data_EF.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.4")
+                .HasAnnotation("ProductVersion", "3.1.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -280,7 +280,7 @@ namespace QL_Vat_Lieu_Xay_Dung_Data_EF.Migrations
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
 
-                    b.Property<Guid>("CustomerId")
+                    b.Property<Guid?>("CustomerId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CustomerMessage")
@@ -538,7 +538,7 @@ namespace QL_Vat_Lieu_Xay_Dung_Data_EF.Migrations
                     b.Property<bool?>("HomeFlag")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("HotFlag")
+                    b.Property<bool?>("HotFlag")
                         .HasColumnType("bit");
 
                     b.Property<string>("Image")
@@ -699,6 +699,30 @@ namespace QL_Vat_Lieu_Xay_Dung_Data_EF.Migrations
                     b.ToTable("ProductQuantities");
                 });
 
+            modelBuilder.Entity("QL_Vat_Lieu_Xay_Dung_Data.Entities.ProductTag", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TagId")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)")
+                        .HasMaxLength(50);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("TagId");
+
+                    b.ToTable("ProductTags");
+                });
+
             modelBuilder.Entity("QL_Vat_Lieu_Xay_Dung_Data.Entities.Size", b =>
                 {
                     b.Property<int>("Id")
@@ -796,7 +820,6 @@ namespace QL_Vat_Lieu_Xay_Dung_Data_EF.Migrations
             modelBuilder.Entity("QL_Vat_Lieu_Xay_Dung_Data.Entities.Tag", b =>
                 {
                     b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("varchar(50)")
                         .HasMaxLength(50);
 
@@ -808,14 +831,7 @@ namespace QL_Vat_Lieu_Xay_Dung_Data_EF.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("Tags");
                 });
@@ -840,9 +856,7 @@ namespace QL_Vat_Lieu_Xay_Dung_Data_EF.Migrations
                 {
                     b.HasOne("QL_Vat_Lieu_Xay_Dung_Data.Entities.AppUser", "User")
                         .WithMany()
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CustomerId");
                 });
 
             modelBuilder.Entity("QL_Vat_Lieu_Xay_Dung_Data.Entities.BillDetail", b =>
@@ -914,11 +928,17 @@ namespace QL_Vat_Lieu_Xay_Dung_Data_EF.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("QL_Vat_Lieu_Xay_Dung_Data.Entities.Tag", b =>
+            modelBuilder.Entity("QL_Vat_Lieu_Xay_Dung_Data.Entities.ProductTag", b =>
                 {
                     b.HasOne("QL_Vat_Lieu_Xay_Dung_Data.Entities.Product", "Product")
-                        .WithMany()
+                        .WithMany("ProductTags")
                         .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("QL_Vat_Lieu_Xay_Dung_Data.Entities.Tag", "Tag")
+                        .WithMany()
+                        .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -56,16 +56,16 @@ namespace QL_Vat_Lieu_Xay_Dung_Data_EF
             if (includeProperties != null)
             {
                 #region C1 dùng Foreach
-                //foreach (var includeProperty in includeProperties)
-                //{
-                //    items = items.Include(includeProperty);
-                //}
+                foreach (var includeProperty in includeProperties)
+                {
+                    items = items.Include(includeProperty);
+                }
                 #endregion
 
                 #region C2 dùng Linq-Expression
                 // Aggregate trong linq là 	Thực thi 1 toán tử tổng hợp tự tạo dựa trên giá trị của 1 tập dữ liệu.
                 // current là biến items bị ẩn nó tương đương vs items.Include(includeProperty) , includeProperty biến trong foreach
-                items = includeProperties.Aggregate(items, (current, includeProperty) => current.Include(includeProperty));
+                //items = includeProperties.Aggregate(items, (current, includeProperty) => current.Include(includeProperty));
                 #endregion
 
             }
