@@ -11,6 +11,7 @@ using QL_Vat_Lieu_Xay_Dung_Services.Interfaces;
 using QL_Vat_Lieu_Xay_Dung_Services.ViewModels.Enum;
 using QL_Vat_Lieu_Xay_Dung_Services.ViewModels.Product;
 using QL_Vat_Lieu_Xay_Dung_Utilities.Extensions;
+using QL_Vat_Lieu_Xay_Dung_WebApp.Authorization;
 
 namespace QL_Vat_Lieu_Xay_Dung_WebApp.Areas.Admin.Controllers
 {
@@ -18,17 +19,26 @@ namespace QL_Vat_Lieu_Xay_Dung_WebApp.Areas.Admin.Controllers
     [Authorize]
     public class BillController : Controller
     {
+        private readonly IAuthorizationService _authorizationService;
         private readonly IBillService _billService;
 
-        public BillController(IBillService billService)
+        public BillController(IBillService billService, IAuthorizationService authorizationService)
         {
             _billService = billService;
+            _authorizationService = authorizationService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var result = await _authorizationService.AuthorizeAsync(User, "BILL", Operation.Read);
+            if (!result.Succeeded)
+            {
+                return new RedirectResult("/Admin/Login/Index");
+            }
             return View();
         }
+
+        #region Get Data API
 
         [HttpGet]
         public IActionResult GetById(int id)
@@ -104,5 +114,6 @@ namespace QL_Vat_Lieu_Xay_Dung_WebApp.Areas.Admin.Controllers
             var sizes = _billService.GetSizes();
             return new OkObjectResult(sizes);
         }
+        #endregion
     }
 }

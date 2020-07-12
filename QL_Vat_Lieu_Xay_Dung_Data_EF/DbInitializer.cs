@@ -12,8 +12,8 @@ namespace QL_Vat_Lieu_Xay_Dung_Data_EF
     public class DbInitializer
     {
         private readonly AppDbContext _context;
-        private UserManager<AppUser> _userManager;
-        private RoleManager<AppRole> _roleManager;
+        private readonly UserManager<AppUser> _userManager;
+        private readonly RoleManager<AppRole> _roleManager;
 
         public DbInitializer(AppDbContext context, UserManager<AppUser> userManager, RoleManager<AppRole> roleManager)
         {
@@ -92,21 +92,21 @@ namespace QL_Vat_Lieu_Xay_Dung_Data_EF
             {
                 var slides = new List<Slide>()
                 {
-                    new Slide() {Name="Slide 1",Image="~/img_ds/slide-1.jpg",Url="#",DisplayOrder = 0,GroupAlias = "top",Status = true },
-                    new Slide() {Name="Slide 2",Image="~/img_ds/slide-2.jpg",Url="#",DisplayOrder = 1,GroupAlias = "top",Status = true },
-                    new Slide() {Name="Slide 3",Image="~/img_ds/slide-3.jpg",Url="#",DisplayOrder = 2,GroupAlias = "top",Status = true },
+                    new Slide() {Name="Slide 1",Image="/img_ds/slide-1.jpg",Url="#",DisplayOrder = 1,GroupAlias = "top",Status=Status.Active },
+                    new Slide() {Name="Slide 2",Image="/img_ds/slide-2.jpg",Url="#",DisplayOrder = 2,GroupAlias = "top",Status=Status.Active },
+                    new Slide() {Name="Slide 3",Image="/img_ds/slide-3.jpg",Url="#",DisplayOrder = 3,GroupAlias = "top",Status=Status.Active },
 
-                    new Slide() {Name="Slide 1",Image="~/img_ds/images/brand1.png",Url="#",DisplayOrder = 1,GroupAlias = "brand",Status = true },
-                    new Slide() {Name="Slide 2",Image="~/img_ds/images/brand1.png",Url="#",DisplayOrder = 2,GroupAlias = "brand",Status = true },
-                    new Slide() {Name="Slide 3",Image="~/img_ds/images/brand1.png",Url="#",DisplayOrder = 3,GroupAlias = "brand",Status = true },
-                    new Slide() {Name="Slide 4",Image="~/img_ds/images/brand1.png",Url="#",DisplayOrder = 4,GroupAlias = "brand",Status = true },
-                    new Slide() {Name="Slide 5",Image="~/img_ds/images/brand1.png",Url="#",DisplayOrder = 5,GroupAlias = "brand",Status = true },
-                    new Slide() {Name="Slide 6",Image="~/img_ds/images/brand1.png",Url="#",DisplayOrder = 6,GroupAlias = "brand",Status = true },
-                    new Slide() {Name="Slide 7",Image="~/img_ds/images/brand1.png",Url="#",DisplayOrder = 7,GroupAlias = "brand",Status = true },
-                    new Slide() {Name="Slide 8",Image="~/img_ds/images/brand1.png",Url="#",DisplayOrder = 8,GroupAlias = "brand",Status = true },
-                    new Slide() {Name="Slide 9",Image="~/img_ds/images/brand1.png",Url="#",DisplayOrder = 9,GroupAlias = "brand",Status = true },
-                    new Slide() {Name="Slide 10",Image="~/img_ds/brand1.png",Url="#",DisplayOrder = 10,GroupAlias = "brand",Status = true },
-                    new Slide() {Name="Slide 11",Image="~/img_ds/brand1.png",Url="#",DisplayOrder = 11,GroupAlias = "brand",Status = true },
+                    new Slide() {Name="Slide 1",Image="/img_ds/brand1.png",Url="#",DisplayOrder = 1,GroupAlias = "brand",Status=Status.Active },
+                    new Slide() {Name="Slide 2",Image="/img_ds/brand1.png",Url="#",DisplayOrder = 2,GroupAlias = "brand",Status=Status.Active },
+                    new Slide() {Name="Slide 3",Image="/img_ds/brand1.png",Url="#",DisplayOrder = 3,GroupAlias = "brand",Status=Status.Active },
+                    new Slide() {Name="Slide 4",Image="/img_ds/brand1.png",Url="#",DisplayOrder = 4,GroupAlias = "brand",Status=Status.Active },
+                    new Slide() {Name="Slide 5",Image="/img_ds/brand1.png",Url="#",DisplayOrder = 5,GroupAlias = "brand",Status=Status.Active },
+                    new Slide() {Name="Slide 6",Image="/img_ds/brand1.png",Url="#",DisplayOrder = 6,GroupAlias = "brand",Status=Status.Active },
+                    new Slide() {Name="Slide 7",Image="/img_ds/brand1.png",Url="#",DisplayOrder = 7,GroupAlias = "brand",Status=Status.Active },
+                    new Slide() {Name="Slide 8",Image="/img_ds/brand1.png",Url="#",DisplayOrder = 8,GroupAlias = "brand",Status=Status.Active },
+                    new Slide() {Name="Slide 9",Image="/img_ds/brand1.png",Url="#",DisplayOrder = 9,GroupAlias = "brand",Status=Status.Active },
+                    new Slide() {Name="Slide 10",Image="/img_ds/brand1.png",Url="#",DisplayOrder = 10,GroupAlias = "brand",Status=Status.Active },
+                    new Slide() {Name="Slide 11",Image="/img_ds/brand1.png",Url="#",DisplayOrder = 11,GroupAlias = "brand",Status=Status.Active },
                 };
                 await _context.Slides.AddRangeAsync(slides);
             }

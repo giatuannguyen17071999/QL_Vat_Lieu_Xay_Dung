@@ -5,12 +5,12 @@
         loadCategory();
         loadData();
         registerEvents();
-        registerCKEditor();
+        registerCkEditor();
         quantitiesManagement.initialize();
         imagesManagement.initialize();
     }
 
-    function registerCKEditor() {
+    function registerCkEditor() {
         CKEDITOR.replace("txtContent", {});
         //Fix: cannot click on element ck in modal
         $.fn.modal.Constructor.prototype.enforceFocus = function () {
@@ -37,9 +37,9 @@
             ignore: [],
             lang: "vi",
             rules: {
-                txtNameM: { required: true },
-                ddlCategoryIdM: { required: true },
-                txtPriceM: {
+                txtName: { required: true },
+                ddlCategoryId: { required: true },
+                txtPrice: {
                     required: true,
                     number: true
                 }
@@ -80,27 +80,27 @@
                 },
                 success: function (response) {
                     var data = response;
-                    $("#hidIdM").val(data.Id);
-                    $("#txtNameM").val(data.Name);
+                    $("#hidId").val(data.Id);
+                    $("#txtName").val(data.Name);
                     initTreeDropDownCategory(data.CategoryId);
-                    $("#txtDescM").val(data.Description);
-                    $("#txtUnitM").val(data.Unit);
-                    $("#txtPriceM").val(data.Price);
-                    $("#txtOriginalPriceM").val(data.OriginalPrice);
-                    $("#txtPromotionPriceM").val(data.PromotionPrice);
+                    $("#txtDesc").val(data.Description);
+                    $("#txtUnit").val(data.Unit);
+                    $("#txtPrice").val(data.Price);
+                    $("#txtOriginalPrice").val(data.OriginalPrice);
+                    $("#txtPromotionPrice").val(data.PromotionPrice);
                     $("#txtImage").val(data.ThumbnailImage);
                     $("#hidDateCreated").val(data.DateCreated);
                     $("#txtTagM").val(data.Tags);
-                    $("#txtMetakeywordM").val(data.SeoKeywords);
-                    $("#txtMetaDescriptionM").val(data.SeoDescription);
-                    $("#txtSeoPageTitleM").val(data.SeoPageTitle);
-                    $("#txtSeoAliasM").val(data.SeoAlias);
+                    $("#txtMetaKeyWord").val(data.SeoKeywords);
+                    $("#txtMetaDescription").val(data.SeoDescription);
+                    $("#txtSeoPageTitle").val(data.SeoPageTitle);
+                    $("#txtSeoAlias").val(data.SeoAlias);
 
 
                     CKEDITOR.instances["txtContent"].setData(data.Content);
-                    $("#ckStatusM").prop("checked", data.Status === 1);
-                    $("#ckHotM").prop("checked", data.HotFlag);
-                    $("#ckShowHomeM").prop("checked", data.HomeFlag);
+                    $("#ckStatus").prop("checked", data.Status === 1);
+                    $("#ckHot").prop("checked", data.HotFlag);
+                    $("#ckShowHome").prop("checked", data.HomeFlag);
                     $("#modal-add-edit").modal("show");
                     app.stopLoading();
 
@@ -138,28 +138,28 @@
         $("#btnSave").on("click", function (e) {
               if ($("#frmMaintainance").valid()) {
                 e.preventDefault();
-                var id = $("#hidIdM").val();
-                var name = $("#txtNameM").val();
-                var categoryId = $("#ddlCategoryIdM").combotree("getValue");
-                var description = $("#txtDescM").val();
-                var unit = $("#txtUnitM").val();
-                var price = $("#txtPriceM").val();
-                var originalPrice = $("#txtOriginalPriceM").val();
-                var promotionPrice = $("#txtPromotionPriceM").val();
+                var id = $("#hidId").val();
+                var name = $("#txtName").val();
+                var categoryId = $("#ddlCategoryId").combotree("getValue");
+                var description = $("#txtDesc").val();
+                var unit = $("#txtUnit").val();
+                var price = $("#txtPrice").val();
+                var originalPrice = $("#txtOriginalPrice").val();
+                var promotionPrice = $("#txtPromotionPrice").val();
                 var dateCreated = $("#hidDateCreated").val();
                 var image = $("#txtImage").val();
-                var tags = $("#txtTagM").val();
-                var seoKeyword = $("#txtMetakeywordM").val();
-                var seoMetaDescription = $("#txtMetaDescriptionM").val();
-                var seoPageTitle = $("#txtSeoPageTitleM").val();
-                var seoAlias = $("#txtSeoAliasM").val();
+                var tags = $("#txtTag").val();
+                var seoKeyword = $("#txtMetaKeyWord").val();
+                var seoMetaDescription = $("#txtMetaDescription").val();
+                var seoPageTitle = $("#txtSeoPageTitle").val();
+                var seoAlias = $("#txtSeoAlias").val();
 
                 var content = CKEDITOR.instances["txtContent"].getData();
 
 
-                var status = $("#ckStatusM").prop("checked") === true ? 1 : 0;
-                var hot = $("#ckHotM").prop("checked");
-                var showHome = $("#ckShowHomeM").prop("checked");
+                var status = $("#ckStatus").prop("checked") === true ? 1 : 0;
+                var hot = $("#ckHot").prop("checked");
+                var showHome = $("#ckShowHome").prop("checked");
 
                 $.ajax({
                     type: "POST",
@@ -258,41 +258,41 @@
                     });
                 });
                 var arr = app.unflattern(data);
-                $("#ddlCategoryIdM").combotree({
+                $("#ddlCategoryId").combotree({
                     data: arr
                 });
                 if (selectedId != undefined) {
-                    $("#ddlCategoryIdM").combotree("setValue", selectedId);
+                    $("#ddlCategoryId").combotree("setValue", selectedId);
                 }
             }
         });
     }
     function resetFormMaintainance() {
-        $("#hidIdM").val(0);
-        $("#txtNameM").val("");
+        $("#hidId").val(0);
+        $("#txtName").val("");
         initTreeDropDownCategory("");
         var today = new Date();
         var date = today.getFullYear()+"-"+(today.getMonth()+1)+"-"+today.getDate();
         $("#hidDateCreated").val(date);
-        $("#txtDescM").val("");
-        $("#txtUnitM").val("");
+        $("#txtDesc").val("");
+        $("#txtUnit").val("");
 
-        $("#txtPriceM").val("0");
-        $("#txtOriginalPriceM").val("");
-        $("#txtPromotionPriceM").val("");
+        $("#txtPrice").val("0");
+        $("#txtOriginalPrice").val("");
+        $("#txtPromotionPrice").val("");
 
-        $("#image").val("");
+        $("#txtImage").val("");
 
-        $("#txtTagM").val("");
-        $("#txtMetakeywordM").val("");
-        $("#txtMetaDescriptionM").val("");
-        $("#txtSeoPageTitleM").val("");
-        $("#txtSeoAliasM").val("");
+        $("#txtTag").val("");
+        $("#txtMetaKeyWord").val("");
+        $("#txtMetaDescription").val("");
+        $("#txtSeoPageTitle").val("");
+        $("#txtSeoAlias").val("");
 
         CKEDITOR.instances["txtContent"].setData("");
-        $("#ckStatusM").prop("checked", true);
-        $("#ckHotM").prop("checked", false);
-        $("#ckShowHomeM").prop("checked", false);
+        $("#ckStatus").prop("checked", true);
+        $("#ckHot").prop("checked", false);
+        $("#ckShowHome").prop("checked", false);
 
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -333,8 +333,6 @@
             url: "/Admin/Product/GetAllPaging",
             dataType: "json",
             success: function (response) {
-                console.log(response);
-
                 $.each(response.ResultList,
                     function(i, item) {
                         console.log("lay data"+item);
