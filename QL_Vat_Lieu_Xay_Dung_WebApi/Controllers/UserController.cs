@@ -22,6 +22,7 @@ namespace QL_Vat_Lieu_Xay_Dung_WebApi.Controllers
         }
         // GET: api/<UserController>
         [HttpGet]
+        [Route("user-{id}")]
         public async Task<IActionResult> GetById(string id)
         {
             var model = await _userService.GetById(id);
@@ -31,7 +32,8 @@ namespace QL_Vat_Lieu_Xay_Dung_WebApi.Controllers
 
 
 
-        [HttpPut("{id}")]
+        [HttpPut]
+        [Route("cap-nhat-user-{userViewModel}")]
         public async Task<IActionResult> Put(AppUserViewModel userViewModel)
         {
 

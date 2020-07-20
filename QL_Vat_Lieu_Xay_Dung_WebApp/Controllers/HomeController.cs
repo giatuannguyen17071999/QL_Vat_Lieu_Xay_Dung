@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using QL_Vat_Lieu_Xay_Dung_Services.Interfaces;
 using QL_Vat_Lieu_Xay_Dung_WebApp.Extensions;
 using QL_Vat_Lieu_Xay_Dung_WebApp.Models;
 
@@ -15,21 +16,28 @@ namespace QL_Vat_Lieu_Xay_Dung_WebApp.Controllers
 
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IProductService _productService;
+        private readonly IProductCategoryService _productCategoryService;
+        private readonly ISlideService _slideService;
+        public HomeController(IProductService productService, IProductCategoryService productCategoryService, ISlideService slideService)
         {
-            _logger = logger;
+            _productService = productService;
+            _productCategoryService = productCategoryService;
+            _slideService = slideService;
         }
 
         public IActionResult Index()
         {
-            return View();
-        }
+            ViewData["BodyClass"] = "cms-index-index cms-home-page";
+            var homeViewModel = new HomeViewModel
+            {
 
-        public IActionResult Privacy()
-        {
-            return View();
+                HotProducts = _productService.GetHotProducts(5),
+                TopSellProducts = _productService.GetTopSellProducts(5),
+                HomeSlides = _slideService.GetSlides("top"),
+                HomeCategories = _productCategoryService.GetHomeCategories(5),
+            };
+            return View(homeViewModel);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

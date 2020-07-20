@@ -1,15 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using PaulMiami.AspNetCore.Mvc.Recaptcha;
 using QL_Vat_Lieu_Xay_Dung_Data.Entities;
+using QL_Vat_Lieu_Xay_Dung_Data.Enums;
 using QL_Vat_Lieu_Xay_Dung_WebApp.Extensions;
 using QL_Vat_Lieu_Xay_Dung_WebApp.Models.AccountViewModels;
 
@@ -22,17 +28,21 @@ namespace QL_Vat_Lieu_Xay_Dung_WebApp.Controllers
         private readonly SignInManager<AppUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
+        [Obsolete]
+        private readonly IHostingEnvironment _hostingEnvironment;
 
+        [Obsolete]
         public AccountController(
             UserManager<AppUser> userManager,
             SignInManager<AppUser> signInManager,
             IEmailSender emailSender,
-            ILogger<AccountController> logger)
+            ILogger<AccountController> logger, IHostingEnvironment hostingEnvironment)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
+            _hostingEnvironment = hostingEnvironment;
         }
 
         [TempData]
@@ -40,6 +50,7 @@ namespace QL_Vat_Lieu_Xay_Dung_WebApp.Controllers
 
         [HttpGet]
         [AllowAnonymous]
+        [Route("dang-nhap.html")]
         public async Task<IActionResult> Login(string returnUrl = null)
         {
             // Clear the existing external cookie to ensure a clean login process
@@ -52,6 +63,8 @@ namespace QL_Vat_Lieu_Xay_Dung_WebApp.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [ValidateRecaptcha]
+        [Route("dang-nhap.html")]
         public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
@@ -204,36 +217,76 @@ namespace QL_Vat_Lieu_Xay_Dung_WebApp.Controllers
 
         [HttpGet]
         [AllowAnonymous]
+        [Route("dang-ky.html")]
         public IActionResult Register(string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
+        [Obsolete]
+        public string UploadImage(IFormFile avatar)
+        {
+            if (avatar == null)
+            {
+                return null;
+            }
+            var now = DateTime.Now;
+            var filename = avatar
+                    .FileName
+                    .Trim('"');
 
+                var imageFolder = $@"\uploaded\images\{now: yyyyMMdd}";
+
+                var folder = _hostingEnvironment.WebRootPath + imageFolder;
+
+                if (!Directory.Exists(folder))
+                {
+                    Directory.CreateDirectory(folder);
+                }
+                var filePath = Path.Combine(folder, filename);
+                using (var fs = System.IO.File.Create(filePath))
+                {
+                    avatar.CopyTo(fs);
+                    fs.Flush();
+                }
+                return Path.Combine(imageFolder, filename).Replace(@"\", @"/");
+            }
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [Route("dang-ky.html")]
+        [Obsolete]
         public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var user = new AppUser { UserName = model.Email, Email = model.Email };
-                var result = await _userManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-                    _logger.LogInformation("User created a new account with password.");
-
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
-                    await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
-
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    _logger.LogInformation("User created a new account with password.");
-                    return RedirectToLocal(returnUrl);
-                }
-                AddErrors(result);
+                return View(model);
             }
+            //MM/dd/yyy
+            var user = new AppUser
+            {
+                UserName = model.UserName,
+                Email = model.Email,
+                FullName = model.FullName,
+                PhoneNumber = model.PhoneNumber,
+                BirthDay = model.BirthDay,
+                Status = Status.Active,
+                Avatar = UploadImage(model.Avatar)
+            };
+            var result = await _userManager.CreateAsync(user, model.Password);
+            if (result.Succeeded)
+            {
+                _logger.LogInformation("User created a new account with password.");
+                await _userManager.AddToRoleAsync(user, "Customer");
+                var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
+                await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
+                await _signInManager.SignInAsync(user, isPersistent: false);
+                _logger.LogInformation("User created a new account with password.");
+                return RedirectToLocal(returnUrl);
+            }
+            AddErrors(result);
 
             // If we got this far, something failed, redisplay form
             return View(model);

@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
     <UserSecretsId>aspnet-QL_Vat_Lieu_Xay_Dung_WebApp-E9C55AE4-8D22-4159-9D19-8F9ACBABF994</UserSecretsId>
   </PropertyGroup>
 
@@ -15,31 +15,34 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.0.0" />
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.0.1" />
     <PackageReference Include="bootstrap" Version="4.5.0" />
     <PackageReference Include="jQuery" Version="3.5.1" />
     <PackageReference Include="jQuery.Validation" Version="1.19.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.5" />
-    <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="3.1.5" />
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.5" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.5" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.5" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.5" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.5" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.5" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.5">
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="3.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.5" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.5" />
-    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.9.6">
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0" />
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.9.7">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="PaulMiami.AspNetCore.Mvc.Recaptcha" Version="1.2.2" />
+    <PackageReference Include="RestSharp" Version="106.11.4" />
     <PackageReference Include="Serilog.Extensions.Logging.File" Version="2.0.0" />
   </ItemGroup>
 
@@ -60,6 +63,30 @@
     <None Include="Areas\Admin\Views\Shared\_ValidationScriptsPartial.cshtml" />
     <None Include="Areas\Admin\Views\_ViewImports.cshtml" />
     <None Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <None Include="wwwroot\assets\client\fonts\font-awesome\fontawesome-webfont.svg" />
+    <None Include="wwwroot\assets\client\fonts\font-awesome\fontawesome-webfont.woff2" />
+    <None Include="wwwroot\assets\client\fonts\glyphicons-halflings-regular.svg" />
+    <None Include="wwwroot\assets\client\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="wwwroot\assets\client\fonts\pe-icon-7-stroke\Pe-icon-7-stroke.svg" />
+    <None Include="wwwroot\assets\client\fonts\revicons.svg" />
+    <None Include="wwwroot\assets\client\fonts\revicons\index.php" />
+    <None Include="wwwroot\assets\client\fonts\revicons\revicons.svg" />
+    <None Include="wwwroot\assets\client\fonts\simple-line-icons\Simple-Line-Icons.dev.svg" />
+    <None Include="wwwroot\assets\client\fonts\simple-line-icons\Simple-Line-Icons.svg" />
+    <None Include="wwwroot\assets\client\fonts\simple-line-icons\Simple-Line-Icons.woff2" />
+    <None Include="wwwroot\assets\client\js\bootstrap.min.js" />
+    <None Include="wwwroot\assets\client\js\cloud-zoom.js" />
+    <None Include="wwwroot\assets\client\js\countdown.js" />
+    <None Include="wwwroot\assets\client\js\jquery-ui.js" />
+    <None Include="wwwroot\assets\client\js\jquery.bxslider.js" />
+    <None Include="wwwroot\assets\client\js\jquery.flexslider.js" />
+    <None Include="wwwroot\assets\client\js\jquery.magnifying-zoom.js" />
+    <None Include="wwwroot\assets\client\js\jquery.min.js" />
+    <None Include="wwwroot\assets\client\js\main.js" />
+    <None Include="wwwroot\assets\client\js\mobile-menu.js" />
+    <None Include="wwwroot\assets\client\js\owl.carousel.min.js" />
+    <None Include="wwwroot\assets\client\js\revolution-extension.js" />
+    <None Include="wwwroot\assets\client\js\revolution-slider.js" />
     <None Include="wwwroot\lib\jquery-easyui\easyloader.js" />
     <None Include="wwwroot\lib\jquery-easyui\jquery.easyui.min.js" />
     <None Include="wwwroot\lib\jquery-easyui\jquery.easyui.mobile.js" />
@@ -165,6 +192,8 @@
 
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Logs\" />
+    <Folder Include="wwwroot\uploaded\images\ 20200718\" />
   </ItemGroup>
 
 </Project>

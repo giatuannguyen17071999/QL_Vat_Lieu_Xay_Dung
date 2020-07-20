@@ -346,14 +346,15 @@
                                 CreatedDate: app.dateFormatJson(item.DateCreated),
                                 Status: app.getStatus(item.Status)
                             });
-                        $("#lblTotalRecords").text(response.RowCount);
-                        if (tmp !== "") {
-                            $("#tbl-content").html(tmp);
-                        }
-                        wrapPaging(response.RowCount,function(){
-                            loadData();
-                        },isPageChanged);
-                    });
+                    }
+                );
+                $("#lblTotalRecords").text(response.RowCount);
+                if (tmp !== "") {
+                    $("#tbl-content").html(tmp);
+                }
+                wrapPaging(response.RowCount,function(){
+                    loadData();
+                },isPageChanged);
             },
             error: function(response) {
                 console.log(response);

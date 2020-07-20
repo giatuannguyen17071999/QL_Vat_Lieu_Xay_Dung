@@ -17,6 +17,7 @@ namespace QL_Vat_Lieu_Xay_Dung_Data_EF
 {
     public class AppDbContext : IdentityDbContext<AppUser, AppRole, Guid>
     {
+
         public AppDbContext(DbContextOptions options) : base(options)
         {
 
@@ -58,7 +59,6 @@ namespace QL_Vat_Lieu_Xay_Dung_Data_EF
             builder.AddConfiguration(new SystemConfigConfiguration());
             builder.AddConfiguration(new ProductTagConfiguration());
             // base.OnModelCreating(builder);
-
         }
 
         public override int SaveChanges()

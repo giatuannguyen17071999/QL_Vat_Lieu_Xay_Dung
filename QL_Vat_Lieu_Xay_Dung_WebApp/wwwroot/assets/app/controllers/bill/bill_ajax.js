@@ -277,7 +277,9 @@
     function resetFormMaintainance() {
         $("#hidId").val(0);
         $("#txtCustomerName").val("");
-
+        var today = new Date();
+        var date = today.getFullYear()+"-"+(today.getMonth()+1)+"-"+today.getDate();
+        $("#hidDateCreated").val(date);
         $("#txtCustomerAddress").val("");
         $("#txtCustomerMobile").val("");
         $("#txtCustomerMessage").val("");

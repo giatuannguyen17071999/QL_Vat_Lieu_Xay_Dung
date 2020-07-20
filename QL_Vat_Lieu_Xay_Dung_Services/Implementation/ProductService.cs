@@ -8,6 +8,7 @@ using QL_Vat_Lieu_Xay_Dung_Data.Entities;
 using QL_Vat_Lieu_Xay_Dung_Data.Enums;
 using QL_Vat_Lieu_Xay_Dung_Infrastructure.Interfaces;
 using QL_Vat_Lieu_Xay_Dung_Services.Interfaces;
+using QL_Vat_Lieu_Xay_Dung_Services.ViewModels.Common;
 using QL_Vat_Lieu_Xay_Dung_Services.ViewModels.Product;
 using QL_Vat_Lieu_Xay_Dung_Utilities.Constants;
 using QL_Vat_Lieu_Xay_Dung_Utilities.Dtos;
@@ -41,7 +42,7 @@ namespace QL_Vat_Lieu_Xay_Dung_Services.Implementation
         }
         public List<ProductViewModel> GetAll()
         {
-            return _productRepository.FindAll(x => x.ProductCategory).ProjectTo<ProductViewModel>(_mapper.ConfigurationProvider).ToList();
+            return _productRepository.FindAll().ProjectTo<ProductViewModel>(_mapper.ConfigurationProvider).ToList();
         }
 
         public ProductViewModel Add(ProductViewModel productViewModel)
@@ -208,6 +209,62 @@ namespace QL_Vat_Lieu_Xay_Dung_Services.Implementation
             return _mapper.ProjectTo<ProductImageViewModel>(
                 _productImageRepository.FindAll(x => x.ProductId == productId)
             ).ToList();
+        }
+        public List<ProductViewModel> GetTopSellProducts(int top)
+        {
+            return _mapper.ProjectTo<ProductViewModel>(_productRepository.FindAll(x => x.Status == Status.Active).OrderByDescending(x => x.DateCreated)
+                .Take(top)).ToList();
+        }
+
+        public List<ProductViewModel> GetHotProducts(int top)
+        {
+            return _mapper.ProjectTo<ProductViewModel>(_productRepository.FindAll(x => x.Status == Status.Active && x.HotFlag == true)
+                .OrderByDescending(x => x.DateCreated)
+                .Take(top)).ToList();
+        }
+
+        public List<ProductViewModel> GetRelatedProducts(int id, int top)
+        {
+            var product = _productRepository.FindById(id);
+            return _mapper.ProjectTo<ProductViewModel>(
+                    _productRepository.FindAll(x => x.Status == Status.Active
+                                                    && x.Id != id && x.CategoryId == product.CategoryId)
+                        .OrderByDescending(x => x.DateCreated)
+                        .Take(top))
+                .ToList();
+        }
+
+        public List<ProductViewModel> GetUpsellProducts(int top)
+        {
+            return _mapper.ProjectTo<ProductViewModel>(
+                _productRepository.FindAll(x => x.PromotionPrice != null)
+                    .OrderByDescending(x => x.DateModified)
+                    .Take(top)).ToList();
+        }
+
+        public List<TagViewModel> GetProductTags(int productId)
+        {
+            var tags = _tagRepository.FindAll();
+            var productTags = _productTagRepository.FindAll();
+
+            var query = from t in tags
+                join pt in productTags
+                    on t.Id equals pt.TagId
+                where pt.ProductId == productId
+                select new TagViewModel()
+                {
+                    Id = t.Id,
+                    Name = t.Name
+                };
+            return query.ToList();
+        }
+
+        public bool CheckAvailability(int productId, int size)
+        {
+            var quantity = _productQuantityRepository.FindSingle( x =>x.SizeId == size && x.ProductId == productId);
+            if (quantity == null)
+                return false;
+            return quantity.Quantity > 0;
         }
     }
 }

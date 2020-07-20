@@ -15,7 +15,7 @@ namespace QL_Vat_Lieu_Xay_Dung_WebApi.Controllers
         {
             _slideService = slideService;
         }
-        [HttpGet("{id}")]
+        [HttpGet("slides-{groupAlias}")]
         public IActionResult GetSlides(string groupAlias)
         {
             return new OkObjectResult(_slideService.GetSlides(groupAlias));

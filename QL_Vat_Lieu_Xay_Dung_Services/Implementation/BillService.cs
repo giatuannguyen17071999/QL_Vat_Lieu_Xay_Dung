@@ -23,12 +23,12 @@ namespace QL_Vat_Lieu_Xay_Dung_Services.Implementation
         private readonly IRepository<Product, int> _productRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-
+        private readonly IRepository<ProductQuantity, int> _productQuantityRepository;
         public BillService(IRepository<Bill, int> orderRepository,
             IRepository<BillDetail, int> orderDetailRepository,
             IRepository<Product, int> productRepository,
             IRepository<Size, int> sizeRepository,
-            IUnitOfWork unitOfWork, IMapper mapper)
+            IUnitOfWork unitOfWork, IMapper mapper, IRepository<ProductQuantity, int> productQuantityRepository)
         {
             _orderRepository = orderRepository;
             _orderDetailRepository = orderDetailRepository;
@@ -36,6 +36,7 @@ namespace QL_Vat_Lieu_Xay_Dung_Services.Implementation
             _productRepository = productRepository;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _productQuantityRepository = productQuantityRepository;
         }
         public void Create(BillViewModel billViewModel)
         {
@@ -153,14 +154,25 @@ namespace QL_Vat_Lieu_Xay_Dung_Services.Implementation
 
         public List<BillDetailViewModel> GetBillDetails(int billId)
         {
+
             var model = _mapper
-                .ProjectTo<BillDetailViewModel>(_orderDetailRepository.FindAll(x => x.BillId == billId, c => c.Bill,
-                    c => c.Size, c => c.Product)).ToList();
+                .ProjectTo<BillDetailViewModel>(_orderDetailRepository.FindAll(x => x.BillId == billId)).ToList();
             return model;
         }
 
         public List<SizeViewModel> GetSizes()
         {
+            return _mapper.ProjectTo<SizeViewModel>(_sizeRepository.FindAll()).ToList();
+        }
+
+        public List<SizeViewModel> GetSizesByProduct(int id)
+        {
+            //var model = _sizeRepository.FindAll().Join(_productQuantityRepository.FindAll(), s => s.Id, pq => pq.SizeId,
+            //    (x, y) => new SizeViewModel
+            //    {
+            //        x.Id,
+            //        x.Name,
+            //    }).ToList();
             return _mapper.ProjectTo<SizeViewModel>(_sizeRepository.FindAll()).ToList();
         }
 

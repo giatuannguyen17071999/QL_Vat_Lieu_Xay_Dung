@@ -100,11 +100,14 @@ namespace QL_Vat_Lieu_Xay_Dung_Services.Implementation
             _productCategoryRepository.Update(source);
             _productCategoryRepository.Update(target);
         }
-
         public List<ProductCategoryViewModel> GetHomeCategories(int top)
         {
-            return _mapper.ProjectTo<ProductCategoryViewModel>(_productCategoryRepository.FindAll(x => x.HomeFlag, c => c.Products).OrderBy(x => x.HomeOrder)
+            //var temp = _productCategoryRepository
+            //    .FindAll(x => x.HomeFlag == true, c => c.Products).ToList();
+            var model = _mapper.ProjectTo<ProductCategoryViewModel>(_productCategoryRepository
+                .FindAll(x => x.HomeFlag == true).OrderBy(x => x.HomeOrder)
                 .Take(top)).ToList();
+            return model;
 
         }
 

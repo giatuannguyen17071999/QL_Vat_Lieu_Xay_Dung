@@ -34,7 +34,8 @@ namespace QL_Vat_Lieu_Xay_Dung_Services.Implementation
                 FullName = userViewModel.FullName,
                 DateCreated = DateTime.Now,
                 PhoneNumber = userViewModel.PhoneNumber,
-                Status = userViewModel.Status
+                Status = userViewModel.Status,
+                EmailConfirmed = true
             };
             var result = await _userManager.CreateAsync(user, userViewModel.Password);
             if (result.Succeeded && userViewModel.Roles.Count > 0)

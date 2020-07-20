@@ -14,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using PaulMiami.AspNetCore.Mvc.Recaptcha;
 using QL_Vat_Lieu_Xay_Dung_Data.Entities;
 using QL_Vat_Lieu_Xay_Dung_Data_EF;
 using QL_Vat_Lieu_Xay_Dung_Infrastructure.Interfaces;
@@ -24,6 +25,7 @@ using QL_Vat_Lieu_Xay_Dung_Services.Interfaces;
 using QL_Vat_Lieu_Xay_Dung_WebApp.Authorization;
 using QL_Vat_Lieu_Xay_Dung_WebApp.Helpers;
 using QL_Vat_Lieu_Xay_Dung_WebApp.Services;
+
 
 namespace QL_Vat_Lieu_Xay_Dung_WebApp
 {
@@ -44,7 +46,7 @@ namespace QL_Vat_Lieu_Xay_Dung_WebApp
                     Configuration.GetConnectionString("DefaultConnection"),o => o.MigrationsAssembly("QL_Vat_Lieu_Xay_Dung_Data_EF")));
 
             services.AddIdentity<AppUser, AppRole>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<AppDbContext>();
+                .AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
             // Configure Identity
             services.Configure<IdentityOptions>(options =>
             {
@@ -73,6 +75,11 @@ namespace QL_Vat_Lieu_Xay_Dung_WebApp
                 mc.AddProfile(new MappingProfile());
 
             });
+            services.AddRecaptcha(new RecaptchaOptions
+            {
+                SiteKey = Configuration["Recaptcha:SiteKey"],
+                SecretKey = Configuration["Recaptcha:SecretKey"]
+            });
             var mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
             services.AddTransient<DbInitializer>();
@@ -92,7 +99,9 @@ namespace QL_Vat_Lieu_Xay_Dung_WebApp
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IRoleService, RoleService>();
             services.AddTransient<IBillService, BillService>();
+            services.AddTransient<IFooterService, FooterService>();
             services.AddTransient<ISlideService, SlideService>();
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -43,8 +43,8 @@ namespace QL_Vat_Lieu_Xay_Dung_WebApp.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult GetById(int id)
         {
+          
             var model = _billService.GetDetail(id);
-
             return new OkObjectResult(model);
         }
 
@@ -59,6 +59,7 @@ namespace QL_Vat_Lieu_Xay_Dung_WebApp.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult GetAllPaging(string startDate, string endDate, string keyword, int page, int pageSize)
         {
+            var tmp = _billService.GetBillDetails(1);
             var model = _billService.GetAllPaging(startDate, endDate, keyword, page, pageSize);
             return new OkObjectResult(model);
         }

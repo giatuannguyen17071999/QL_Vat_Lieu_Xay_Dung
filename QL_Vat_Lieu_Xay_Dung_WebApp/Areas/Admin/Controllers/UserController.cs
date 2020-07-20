@@ -56,7 +56,7 @@ namespace QL_Vat_Lieu_Xay_Dung_WebApp.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SaveEntity(AppUserViewModel userVm)
+        public async Task<IActionResult> SaveEntity(AppUserViewModel userViewModel)
         {
             if (!ModelState.IsValid)
             {
@@ -65,15 +65,15 @@ namespace QL_Vat_Lieu_Xay_Dung_WebApp.Areas.Admin.Controllers
             }
             else
             {
-                if (userVm.Id == null)
+                if (userViewModel.Id == null)
                 {
-                    await _userService.AddAsync(userVm);
+                    await _userService.AddAsync(userViewModel);
                 }
                 else
                 {
-                    await _userService.UpdateAsync(userVm);
+                    await _userService.UpdateAsync(userViewModel);
                 }
-                return new OkObjectResult(userVm);
+                return new OkObjectResult(userViewModel);
             }
         }
 

@@ -19,6 +19,7 @@ namespace QL_Vat_Lieu_Xay_Dung_WebApi.Controllers
         }
         // GET: api/values
         [HttpGet]
+        [Route("the-loai-san-pham")]
         public IActionResult Get()
         {
             return new OkObjectResult(_productCategoryService.GetAll());

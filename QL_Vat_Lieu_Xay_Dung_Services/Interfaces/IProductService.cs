@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using QL_Vat_Lieu_Xay_Dung_Services.ViewModels.Common;
 using QL_Vat_Lieu_Xay_Dung_Services.ViewModels.Product;
 using QL_Vat_Lieu_Xay_Dung_Utilities.Dtos;
 
@@ -23,5 +24,11 @@ namespace QL_Vat_Lieu_Xay_Dung_Services.Interfaces
 
         List<ProductViewModel> GetAllSearch(int? categoryId, string keyword);
         PagedResult<ProductViewModel> GetAllPaging(int? categoryId, string keyword, int page, int pageSize);
+        List<ProductViewModel> GetHotProducts(int top);
+        List<ProductViewModel> GetTopSellProducts(int top);
+        List<ProductViewModel> GetRelatedProducts(int id, int top);
+        List<ProductViewModel> GetUpsellProducts(int top);
+        List<TagViewModel> GetProductTags(int productId);
+        bool CheckAvailability(int productId, int size);
     }
 }

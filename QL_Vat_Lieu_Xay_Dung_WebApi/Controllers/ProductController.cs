@@ -19,31 +19,31 @@ namespace QL_Vat_Lieu_Xay_Dung_WebApi.Controllers
         }
         // GET: api/values
         [HttpGet]
-        [Route("Product")]
+        [Route("san-pham")]
         public IActionResult GetProduct()
         {
             return new OkObjectResult(_productService.GetAll());
         }
-        [HttpGet("{id}")]
+        [HttpGet("san-pham-{productId}")]
         public IActionResult GetById(int productId)
         {
             return new OkObjectResult(_productService.GetById(productId));
         }
         [HttpGet]
-        [Route("Search")]
+        [Route("tim-kiem-san-pham-{keyword}-c.{category}")]
         public IActionResult GetSearch(int? categoryId, string keyword)
         {
             var model = _productService.GetAllSearch(categoryId, keyword);
             return new OkObjectResult(model);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("anh-san-pham-{productId}")]
         [Route("ProductImages")]
         public IActionResult GetProductImages(int productId)
         {
             return new OkObjectResult(_productService.GetImages(productId));
         }
-        [HttpGet("{id}")]
+        [HttpGet("so-luong-san-pham-{id}")]
         [Route("ProductQuantities")]
         public IActionResult GetQuantities(int productId)
         {

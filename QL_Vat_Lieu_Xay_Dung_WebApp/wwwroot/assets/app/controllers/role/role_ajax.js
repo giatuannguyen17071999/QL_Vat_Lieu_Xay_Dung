@@ -352,8 +352,6 @@
                     wrapPaging(response.RowCount, function () {
                         loadData();
                     }, isPageChanged);
-
-
                 }
                 else {
                     $("#tbl-content").html("");

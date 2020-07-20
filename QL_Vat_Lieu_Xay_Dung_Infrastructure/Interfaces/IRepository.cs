@@ -13,15 +13,23 @@ namespace QL_Vat_Lieu_Xay_Dung_Infrastructure.Interfaces
         /// params Expression<Func<T, object>>[] là 1 danh sách các cái tham số nó sẽ trả về 1 object
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="includeProperties"></param>
+        /// <param name="predicate"></param>
         /// <returns></returns>
-        T FindById(K id, params Expression<Func<T, object>>[] includeProperties);
+        T FindById(K id);
+        T FindSingle(Expression<Func<T, bool>> predicate);
+        IQueryable<T> FindAll(Expression<Func<T, bool>> predicate);
 
-        T FindSingle(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties);
+        IQueryable<T> FindAll();
 
-        IQueryable<T> FindAll(params Expression<Func<T, object>>[] includeProperties);
 
-        IQueryable<T> FindAll(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties);
+
+        //T FindById(K id, params Expression<Func<T, object>>[] includeProperties);
+
+        //T FindSingle(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties);
+
+        //IQueryable<T> FindAll(params Expression<Func<T, object>>[] includeProperties);
+
+        //IQueryable<T> FindAll(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties);
 
         void Add(T entity);
 

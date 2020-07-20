@@ -26,6 +26,7 @@ namespace QL_Vat_Lieu_Xay_Dung_Services.Interfaces
         List<BillDetailViewModel> GetBillDetails(int billId);
 
         List<SizeViewModel> GetSizes();
+        List<SizeViewModel> GetSizesByProduct(int id);
 
         SizeViewModel GetSize(int id);
 
