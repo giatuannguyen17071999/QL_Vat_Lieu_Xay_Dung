@@ -49,7 +49,7 @@ namespace QL_Vat_Lieu_Xay_Dung_WDF_Core
 
             #region Đổi Form Ở Đây
             // Doi Form o day
-            Application.Run(services.GetRequiredService<frmHangHoa>());
+            Application.Run(services.GetRequiredService<frmLogin>());
             #endregion
         }
 
@@ -61,7 +61,6 @@ namespace QL_Vat_Lieu_Xay_Dung_WDF_Core
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(
                     configuration.GetConnectionString("DefaultConnection"), o => o.MigrationsAssembly("QL_Vat_Lieu_Xay_Dung_Data_EF")));
-            services.AddScoped<frmHangHoa>();
             services.AddIdentity<AppUser, AppRole>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
             // Configure Identity
@@ -120,6 +119,19 @@ namespace QL_Vat_Lieu_Xay_Dung_WDF_Core
             services.AddTransient<IFooterService, FooterService>();
             services.AddTransient<ISlideService, SlideService>();
             services.AddTransient<IAuthorizationHandler, DocumentAuthorizationCrudHandler>();
+
+            // Form
+            //Add form vao service o day
+
+            services.AddScoped<frmLogin>();
+            services.AddTransient<frmBill>();
+            services.AddTransient<frmBill_BillDetailt>();
+            services.AddTransient<frmDanhMucHangHoa>();
+            services.AddTransient<frmHangHoa>();
+            services.AddTransient<frmKhachHang_NCC>();
+            services.AddTransient<frmListProduct>();
+            services.AddTransient<frmMain>();
+
             #endregion
         }
     }
