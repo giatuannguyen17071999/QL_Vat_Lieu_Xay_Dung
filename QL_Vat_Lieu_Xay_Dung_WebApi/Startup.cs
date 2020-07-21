@@ -6,6 +6,7 @@ using System.Security.Policy;
 using System.Text;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -48,7 +49,6 @@ namespace QL_Vat_Lieu_Xay_Dung_WebApi
             services.AddScoped<RoleManager<AppRole>, RoleManager<AppRole>>();
             services.AddTransient(typeof(IUnitOfWork), typeof(EntityFrameworkUnitOfWork));
             services.AddTransient(typeof(IRepository<,>), typeof(EntityFrameworkRepository<,>));
-            //services.AddTransient<IAuthorizationHandler, DocumentAuthorizationCrudHandler>();
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new MappingProfile());
@@ -74,8 +74,6 @@ namespace QL_Vat_Lieu_Xay_Dung_WebApi
             var mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
             services.AddTransient<DbInitializer>();
-           // services.AddScoped<IUserClaimsPrincipalFactory<AppUser>, CustomClaim>();
-
             //Services
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IProductCategoryService, ProductCategoryService>();

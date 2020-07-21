@@ -119,7 +119,8 @@ namespace QL_Vat_Lieu_Xay_Dung_WebApi.Controllers
                 PhoneNumber = model.PhoneNumber,
                 BirthDay = model.BirthDay,
                 Status = Status.Active,
-                Avatar = model.Avatar != string.Empty ? model.Avatar : "img.jpg"
+                Avatar = model.Avatar != string.Empty ? model.Avatar : "img.jpg",
+                EmailConfirmed = true
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);

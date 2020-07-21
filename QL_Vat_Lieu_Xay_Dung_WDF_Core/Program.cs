@@ -61,7 +61,7 @@ namespace QL_Vat_Lieu_Xay_Dung_WDF_Core
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(
                     configuration.GetConnectionString("DefaultConnection"), o => o.MigrationsAssembly("QL_Vat_Lieu_Xay_Dung_Data_EF")));
-            services.AddSingleton<frmHangHoa>();
+            services.AddScoped<frmHangHoa>();
             services.AddIdentity<AppUser, AppRole>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
             // Configure Identity
@@ -97,11 +97,8 @@ namespace QL_Vat_Lieu_Xay_Dung_WDF_Core
             #endregion
 
             #region Add Singleton
-
             services.AddSingleton(mapper);
-
             #endregion
-
             #region Add Scoped
 
             services.AddScoped<UserManager<AppUser>, UserManager<AppUser>>();
@@ -111,13 +108,8 @@ namespace QL_Vat_Lieu_Xay_Dung_WDF_Core
             #endregion
 
             #region Add Transient
-
             services.AddTransient(typeof(IUnitOfWork), typeof(EntityFrameworkUnitOfWork));
             services.AddTransient(typeof(IRepository<,>), typeof(EntityFrameworkRepository<,>));
-            services.AddTransient<IAuthorizationHandler, DocumentAuthorizationCrudHandler>();
-
-
-
             //Services
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IProductCategoryService, ProductCategoryService>();
@@ -127,7 +119,7 @@ namespace QL_Vat_Lieu_Xay_Dung_WDF_Core
             services.AddTransient<IBillService, BillService>();
             services.AddTransient<IFooterService, FooterService>();
             services.AddTransient<ISlideService, SlideService>();
-
+            services.AddTransient<IAuthorizationHandler, DocumentAuthorizationCrudHandler>();
             #endregion
         }
     }
