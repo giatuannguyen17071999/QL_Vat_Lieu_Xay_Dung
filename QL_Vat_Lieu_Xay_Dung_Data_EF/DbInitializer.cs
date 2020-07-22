@@ -250,7 +250,7 @@ namespace QL_Vat_Lieu_Xay_Dung_Data_EF
                     Status = Status.Active
                 });
             }
-
+            await Task.WhenAll(_context.SaveChangesAsync());
             if (!_context.ProductImages.Any())
             {
                 var listProductImages = new List<ProductImage>()
@@ -645,6 +645,7 @@ namespace QL_Vat_Lieu_Xay_Dung_Data_EF
                 };
                 await _context.ProductQuantities.AddRangeAsync(listProductQuantities);
             }
+
             await _context.SaveChangesAsync();
         }
 

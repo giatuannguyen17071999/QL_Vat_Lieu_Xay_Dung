@@ -1,4 +1,5 @@
-﻿@model HomeViewModel
+﻿
+@model HomeViewModel
 @{
     ViewData["Title"] = @Model.Title;
     ViewData["MetaKeyWord"] = @Model.MetaKeyWord;
@@ -150,7 +151,15 @@
                                                     <div class="item-content">
                                                         <div class="rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> </div>
                                                         <div class="item-price">
-                                                            <div class="price-box"> <span class="regular-price"> <span class="price">@item.Price.ToString("N0")</span> </span> </div>
+                                                            @if (@item.PromotionPrice.HasValue)
+                                                            {
+                                                                <div class="price-box"> <span class="regular-price"> <span class="price">@string.Format(CultureInfo.GetCultureInfo("vi-VN"), "{0:C0}", item.PromotionPrice.Value)</span> </span> </div>
+
+                                                            }
+                                                            else
+                                                            {
+                                                                <div class="price-box"> <span class="regular-price"> <span class="price">@string.Format(CultureInfo.GetCultureInfo("vi-VN"), "{0:C0}", item.Price)</span> </span> </div>
+                                                            }
                                                         </div>
                                                         <div class="pro-action">
                                                             <button type="button" class="add-to-cart"><span> Mua Ngay</span> </button>
@@ -230,7 +239,15 @@
                                                         <div class="item-content">
                                                             <div class="rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> </div>
                                                             <div class="item-price">
-                                                                <div class="price-box"> <span class="regular-price"> <span class="price">@item.Price.ToString("N0")</span> </span> </div>
+                                                                @if (@item.PromotionPrice.HasValue)
+                                                                {
+                                                                    <div class="price-box"> <span class="regular-price"> <span class="price">@string.Format(CultureInfo.GetCultureInfo("vi-VN"), "{0:C0}", item.PromotionPrice.Value)</span> </span> </div>
+
+                                                                }
+                                                                else
+                                                                {
+                                                                    <div class="price-box"> <span class="regular-price"> <span class="price">@string.Format(CultureInfo.GetCultureInfo("vi-VN"), "{0:C0}", item.Price)</span> </span> </div>
+                                                                }
                                                             </div>
                                                             <div class="pro-action">
                                                                 <button type="button" class="add-to-cart"><span> Mua ngay</span> </button>

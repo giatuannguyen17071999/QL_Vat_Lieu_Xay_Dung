@@ -38,15 +38,18 @@
             <div class="col-main">
                 <div class="product-view-area">
                     <div class="product-big-image col-xs-12 col-sm-5 col-lg-5 col-md-5">
+                        @if (product.PromotionPrice.HasValue)
+                        {
                         <div class="icon-sale-label sale-left">Sale</div>
+                        }
                         <div class="large-image">
                             <a href="@product.Image" class="cloud-zoom" id="magni_img" data-big="@product.Image" data-overlay="/img_ds/magnifying_glass.png" rel="useWrapper: false, adjustY:0, adjustX:20">
-                                <img src="@product.Image" alt="pr img" />
+                                <img src="@product.Image" alt="pr img"/>
                             </a>
                         </div>
                         <div class="flexslider flexslider-thumb">
                             <ul class="previews-list slides">
-                                <li><a href='@product.Image' class='cloud-zoom-gallery' rel="useZoom: 'magni_img', smallImage: '@product.Image' "><img src="@product.Image" alt="ProductImages" /></a></li>
+                                <li><a href="@product.Image" class="cloud-zoom-gallery" rel="useZoom: 'magni_img', smallImage: '@product.Image' "><img src="@product.Image" alt="ProductImages"/></a></li>
                                 @foreach (var item in Model.ProductImages)
                                 {
                                     <li><a href='@item.Path' class='cloud-zoom-gallery' rel="useZoom: 'magni_img', smallImage: '@item.Path' "><img src="@item.Path" alt="@item.Caption"/></a></li>
@@ -66,11 +69,11 @@
                             {
                                 <p class="special-price">
                                     <span class="price-label">Special Price</span>
-                                    <span class="price"> @product.PromotionPrice.Value.ToString("N0") </span>
+                                    <span class="price">@string.Format(CultureInfo.GetCultureInfo("vi-VN"), "{0:C0}", product.PromotionPrice.Value)</span>
                                 </p>
                                 <p class="old-price">
                                     <span class="price-label">Regular Price:</span>
-                                    <span class="price"> @product.Price.ToString("N0") </span>
+                                    <span class="price">@string.Format(CultureInfo.GetCultureInfo("vi-VN"), "{0:C0}", product.Price)</span>
                                 </p>
 
                             }
@@ -78,7 +81,7 @@
                             {
                                 <p class="special-price">
                                     <span class="price-label">Special Price</span>
-                                    <span class="price"> @product.Price.ToString("N0") </span>
+                                    <span class="price">@string.Format(CultureInfo.GetCultureInfo("vi-VN"), "{0:C0}", product.Price)</span>
                                 </p>
                             }
 
@@ -88,10 +91,13 @@
                             <p class="rating-links"> <a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Your Review</a> </p>
                             <p class="availability @(product.Status == QL_Vat_Lieu_Xay_Dung_Data.Enums.Status.Active?"in-stock":"out-of-stock") pull-right">Availability: <span>@product.Status</span></p>
                         </div>
-                        <div class="short-description">
-                            <h2>Mô Tả</h2>
-                            <p> @product.Description</p>
-                        </div>
+                        @if (!string.IsNullOrEmpty(@product.Description))
+                        {
+                            <div class="short-description">
+                                <h2>Mô Tả</h2>
+                                <p> @product.Description</p>
+                            </div>
+                        }
                         <div class="size-area">
                             <h2 class="saider-bar-title">Size</h2>
                             <div class="size">
@@ -201,7 +207,7 @@
                                                     <div class="item-content">
                                                         <div class="rating"> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> </div>
                                                         <div class="item-price">
-                                                            <div class="price-box"> <span class="regular-price"> <span class="price">@item.Price</span> </span> </div>
+                                                            <div class="price-box"> <span class="regular-price"> <span class="price">@string.Format(CultureInfo.GetCultureInfo("vi-VN"), "{0:C0}", item.Price)</span> </span> </div>
                                                         </div>
                                                         <div class="pro-action">
                                                             <button type="button" class="add-to-cart"><span>Thêm Vào Giỏ</span> </button>
@@ -261,7 +267,7 @@
                                                     <div class="item-content">
                                                         <div class="rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> </div>
                                                         <div class="item-price">
-                                                            <div class="price-box"> <span class="regular-price"> <span class="price">@item.Price</span> </span> </div>
+                                                            <div class="price-box"> <span class="regular-price"> <span class="price">@string.Format(CultureInfo.GetCultureInfo("vi-VN"), "{0:C0}", item.PromotionPrice.Value)</span> </span> </div>
                                                         </div>
                                                         <div class="pro-action">
                                                             <button type="button" class="add-to-cart"><span>Thêm Vào Giỏ</span> </button>

@@ -10,8 +10,8 @@ using QL_Vat_Lieu_Xay_Dung_Data_EF;
 namespace QL_Vat_Lieu_Xay_Dung_Data_EF.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200721005608_test")]
-    partial class test
+    [Migration("20200722151445_tt")]
+    partial class tt
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -829,9 +829,6 @@ namespace QL_Vat_Lieu_Xay_Dung_Data_EF.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

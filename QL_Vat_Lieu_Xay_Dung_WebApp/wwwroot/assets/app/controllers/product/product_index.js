@@ -88,7 +88,7 @@
                     $("#txtPrice").val(data.Price);
                     $("#txtOriginalPrice").val(data.OriginalPrice);
                     $("#txtPromotionPrice").val(data.PromotionPrice);
-                    $("#txtImage").val(data.ThumbnailImage);
+                    $("#txtImage").val(data.Image);
                     $("#hidDateCreated").val(data.DateCreated);
                     $("#txtTagM").val(data.Tags);
                     $("#txtMetaKeyWord").val(data.SeoKeywords);
@@ -325,7 +325,7 @@
         $.ajax({
             type: "GET",
             data:{
-                categoryId: $("ddlCategorySearch").val(),
+                categoryId: $("#ddlCategorySearch").val(),
                 keyword:$("#txtKeyword").val(),
                 page: app.configs.pageIndex,
                 pageSize:app.configs.pageSize

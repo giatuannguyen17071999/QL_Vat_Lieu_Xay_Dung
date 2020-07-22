@@ -31,28 +31,42 @@ namespace QL_Vat_Lieu_Xay_Dung_WebApp.Controllers
         [Route("search.html")]
         public IActionResult Search(int? categoryId, string keyword, int? pageSize, string sortBy, int page = 1)
         {
-            var catalog = new SearchViewModel();
+            var productCatalog = new SearchViewModel();
             ViewData["BodyClass"] = "shop_grid_page";
             pageSize ??= 3;
-            catalog.PageSize = pageSize;
-            catalog.SortType = sortBy;
-            catalog.Data = _productService.GetAllPaging(null, keyword, page, pageSize.Value);
-            catalog.Keyword = keyword;
-
-            return View(catalog);
+            productCatalog.PageSize = pageSize;
+            productCatalog.Sizes = _billService.GetSizes();
+            productCatalog.SortType = sortBy;
+            productCatalog.Data = _productService.GetAllPaging(categoryId, keyword, page, pageSize.Value, sortBy);
+            if (categoryId.HasValue)
+            {
+                if (!string.IsNullOrEmpty(keyword))
+                {
+                    productCatalog.Keyword = "DM_" + _productCategoryService.GetById(categoryId.Value).Name + " - " + keyword;
+                }
+                else
+                {
+                    productCatalog.Keyword = "DM_" + _productCategoryService.GetById(categoryId.Value).Name;
+                }
+            }
+            else
+            {
+                productCatalog.Keyword = keyword;
+            }
+            return View(productCatalog);
         }
         [Route("{alias}-c.{id}.html")]
-        public IActionResult ProductCatalog(int id, int? pageSize, string sortBy, int page = 1)
+        public IActionResult ProductCatalog(int id, int? pageSize, int? first_value, int? end_value, int? sizeid, string sortBy, int page = 1)
         {
             var productCatalog = new ProductCatalogViewModel();
             ViewData["BodyClass"] = "shop_grid_page";
             pageSize ??= 3;
-
             productCatalog.PageSize = pageSize;
             productCatalog.SortType = sortBy;
-            productCatalog.Data = _productService.GetAllPaging(id, string.Empty, page, pageSize.Value);
+            productCatalog.Sizes = _billService.GetSizes();
+            productCatalog.Data = _productService.GetAllPaging(id, string.Empty, page, pageSize.Value, sortBy);
             productCatalog.ProductCategory = _productCategoryService.GetById(id);
-
+           // productCatalog
             return View(productCatalog);
         }
 
@@ -67,13 +81,18 @@ namespace QL_Vat_Lieu_Xay_Dung_WebApp.Controllers
                 UpsellProducts = _productService.GetUpsellProducts(6),
                 ProductImages = _productService.GetImages(id),
                 Tags = _productService.GetProductTags(id),
-                Sizes = _billService.GetSizes().Select(x => new SelectListItem()
+                //Sizes = _billService.GetSizes().Select(x => new SelectListItem()
+                //{
+                //    Text = x.Name,
+                //    Value = x.Id.ToString()
+                //}).ToList()
+                Sizes = _productService.GetQuantities(id).Select(x => new SelectListItem()
                 {
-                    Text = x.Name,
-                    Value = x.Id.ToString()
+                    Text = x.Size.Name,
+                    Value = x.SizeId.ToString()
                 }).ToList()
-        };
-            model.ProductCategory = _productCategoryService.GetById(model.Product.CategoryId);
+            };
+                model.ProductCategory = _productCategoryService.GetById(model.Product.CategoryId);
             return View(model);
         }
     }

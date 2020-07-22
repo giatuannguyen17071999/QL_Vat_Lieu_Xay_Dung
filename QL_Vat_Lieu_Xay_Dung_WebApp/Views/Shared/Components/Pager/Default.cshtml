@@ -8,9 +8,18 @@
     var finishIndex = Math.Min(Model.CurrentPage + 5, Model.PageCount);
 }
 <div class="pagination-area">
-    <div class="col-md-4 col-sm-4 items-info">
-        Từ @Model.FirstRowOnPage đến @Model.LastRowOnPage của @Model.RowCount sản phẩm
-    </div>
+    @if (@Model.RowCount > 0)
+    {
+        <div class="col-md-4 col-sm-4 items-info">
+            Từ @Model.FirstRowOnPage đến @Model.LastRowOnPage của @Model.RowCount sản phẩm
+        </div>
+    }
+    else
+    {
+        <div class="col-md-4 col-sm-4 items-info">
+            @Model.RowCount có sản phẩm nào cả
+        </div>
+    }
     <div class="col-md-8 col-sm-8">
         @if (Model.PageCount > 1)
         {

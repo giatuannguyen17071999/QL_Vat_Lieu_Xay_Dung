@@ -63,7 +63,6 @@ namespace QL_Vat_Lieu_Xay_Dung_WebApp.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        [ValidateRecaptcha]
         [Route("dang-nhap.html")]
         public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
         {
@@ -275,14 +274,14 @@ namespace QL_Vat_Lieu_Xay_Dung_WebApp.Controllers
                 Avatar = UploadImage(model.Avatar)
             };
             var result = await _userManager.CreateAsync(user, model.Password);
+            await _userManager.AddToRoleAsync(user, "Customer");
             if (result.Succeeded)
             {
                 _logger.LogInformation("User created a new account with password.");
-                await _userManager.AddToRoleAsync(user, "Customer");
+
                 var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                 var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
                 await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
-                await _signInManager.SignInAsync(user, isPersistent: false);
                 _logger.LogInformation("User created a new account with password.");
                 return RedirectToLocal(returnUrl);
             }

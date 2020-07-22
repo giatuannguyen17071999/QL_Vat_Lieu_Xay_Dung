@@ -30,23 +30,26 @@
                     <div class="page-title">
                         <h2>Search Result: @Model.Keyword</h2>
                     </div>
-                    <div class="toolbar">
-                        <form action="/search.html" method="get">
-                            <input type="hidden" name="keyword" value="@Model.Keyword" />
-                            <div class="sorter">
-                                <div class="short-by">
-                                    <label>Sort By:</label>
-                                    <select name="sortBy" asp-for="SortType"
-                                            onchange="this.form.submit()" asp-items="Model.SortTypes"></select>
+                    @if (@Model.Data.PageCount > 0)
+                    {
+                        <div class="toolbar">
+                            <form action="/search.html" method="get">
+                                <input type="hidden" name="keyword" value="@Model.Keyword" />
+                                <div class="sorter">
+                                    <div class="short-by">
+                                        <label>Sort By:</label>
+                                        <select name="sortBy" asp-for="SortType"
+                                                onchange="this.form.submit()" asp-items="Model.SortTypes"></select>
+                                    </div>
+                                    <div class="short-by page">
+                                        <label>Show:</label>
+                                        <select name="pageSize" asp-for="PageSize" onchange="this.form.submit()"
+                                                asp-items="Model.PageSizes"></select>
+                                    </div>
                                 </div>
-                                <div class="short-by page">
-                                    <label>Show:</label>
-                                    <select name="pageSize" asp-for="PageSize" onchange="this.form.submit()"
-                                            asp-items="Model.PageSizes"></select>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                            </form>
+                        </div>
+                    }
                     <div class="product-grid-area">
                         <ul class="products-grid">
                             @foreach (var item in Model.Data.ResultList)
@@ -55,10 +58,17 @@
                                 <div class="product-item">
                                     <div class="item-inner">
                                         <div class="product-thumbnail">
-                                            <div class="icon-sale-label sale-left">Sale</div>
-                                            <div class="icon-new-label new-right">New</div>
+                                            @if (@item.PromotionPrice.HasValue)
+                                            {
+                                                <div class="icon-sale-label sale-left">Sale</div>
+                                                <div class="icon-new-label new-right">New</div>
+                                            }
+                                            else
+                                            {
+                                                <div class="icon-new-label new-right">New</div>
+                                            }
                                             <div class="pr-img-area">
-                                                <a title="Ipsums Dolors Untra" href="/@item.SeoAlias-p.@(item.Id).html">
+                                                <a title="@item.Name" href="/@item.SeoAlias-p.@(item.Id).html">
                                                     <figure> <img class="first-img" src="@item.Image" alt="@item.Name"> <img class="hover-img" src="@item.Image" alt="@item.Name"></figure>
                                                 </a>
                                             </div>
@@ -76,7 +86,15 @@
                                                 <div class="item-content">
                                                     <div class="rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> </div>
                                                     <div class="item-price">
-                                                        <div class="price-box"> <span class="regular-price"> <span class="price">@item.Price.ToString("N0")</span> </span> </div>
+                                                        @if (@item.PromotionPrice.HasValue)
+                                                        {
+                                                            <div class="price-box"> <span class="regular-price"> <span class="price">@string.Format(CultureInfo.GetCultureInfo("vi-VN"), "{0:C0}", item.PromotionPrice.Value)</span> </span> </div>
+
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="price-box"> <span class="regular-price"> <span class="price">@string.Format(CultureInfo.GetCultureInfo("vi-VN"), "{0:C0}", item.Price)</span> </span> </div>
+                                                        }
                                                     </div>
                                                     <div class="pro-action">
                                                         <button type="button" class="add-to-cart"><span> Add to Cart</span> </button>

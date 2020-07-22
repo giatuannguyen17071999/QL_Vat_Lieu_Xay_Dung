@@ -73,9 +73,8 @@
                          $("#txtEmail").val(data.Email);
                          $("#txtPhoneNumber").val(data.PhoneNumber);
                          $("#ckStatus").prop("checked", data.Status === 1);
-
+                         $("#txtImage").val(data.Avatar);
                          initRoleList(data.Roles);
-
                          disableFieldEdit(true);
                          $("#modal-add-edit").modal("show");
                          app.stopLoading();
@@ -99,6 +98,8 @@
                      var password = $("#txtPassword").val();
                      var email = $("#txtEmail").val();
                      var phoneNumber = $("#txtPhoneNumber").val();
+                     var img = $("#txtImage").val();
+
                      var roles = [];
                      $.each($('input[name="ckRoles"]'),
                          function(i, item) {
@@ -116,6 +117,7 @@
                              UserName: userName,
                              Password: password,
                              Email: email,
+                             Avatar: img,
                              PhoneNumber: phoneNumber,
                              Status: status,
                              Roles: roles
@@ -168,6 +170,41 @@
                      });
              });
 
+
+
+
+
+         //////////////////////////////////////////////////////////////////////
+
+         $("#btnSelectImg").on("click", function () {
+             $("#fileInputImage").click();
+         });
+         $("#fileInputImage").on("change", function () {
+             var fileUpload = $(this).get(0);
+             var files = fileUpload.files;
+             var data = new FormData();
+             for (var i = 0; i < files.length; i++) {
+                 data.append(files[i].name, files[i]);
+             }
+             $.ajax({
+                 type: "POST",
+                 url: "/Admin/UploadImageFile/UploadImage",
+                 contentType: false,
+                 processData: false,
+                 data: data,
+                 success: function (path) {
+                     $("#txtImage").val(path);
+                     app.notify("Tải ảnh lên thành công", "success");
+
+                 },
+                 error: function () {
+                     app.notify("Có lỗi trong quá trình tải ảnh!", "error");
+                 }
+             });
+         });
+
+
+
      };
 
 
@@ -181,6 +218,7 @@
      function resetFormMaintainance() {
          disableFieldEdit(false);
          $("#hidId").val("");
+         $("#txtImage").val("");
          initRoleList();
          $("#txtFullName").val("");
          $("#txtUserName").val("");
@@ -225,7 +263,6 @@
              type: "GET",
              url: "/Admin/User/GetAllPaging",
              data: {
-                 categoryId: $("#ddl-category-search").val(),
                  keyword: $("#txt-search-keyword").val(),
                  page: app.configs.pageIndex,
                  pageSize: app.configs.pageSize

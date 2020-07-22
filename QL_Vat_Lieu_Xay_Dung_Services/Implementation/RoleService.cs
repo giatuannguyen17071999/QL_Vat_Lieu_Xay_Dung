@@ -57,18 +57,26 @@ namespace QL_Vat_Lieu_Xay_Dung_Services.Implementation
 
         public Task<bool> CheckPermission(string functionId, string action, string[] roles)
         {
-            var functions = _functionRepository.FindAll();
-            var permissions = _permissionRepository.FindAll();
-            var query = from f in functions
-                        join p in permissions on f.Id equals p.FunctionId
-                        join r in _roleManager.Roles on p.RoleId equals r.Id
-                        where roles.Contains(r.Name) && f.Id == functionId
-                        && ((p.CanCreate && action == "Create")
-                        || (p.CanUpdate && action == "Update")
-                        || (p.CanDelete && action == "Delete")
-                        || (p.CanRead && action == "Read"))
-                        select p;
-            return query.AnyAsync();
+            //var functions = _functionRepository.FindAll();
+            //var permissions = _permissionRepository.FindAll();
+            //var query = from f in functions
+            //            join p in permissions on f.Id equals p.FunctionId
+            //            join r in _roleManager.Roles on p.RoleId equals r.Id
+            //            where roles.Contains(r.Name) && f.Id == functionId
+            //            && ((p.CanCreate && action == "Create")
+            //            || (p.CanUpdate && action == "Update")
+            //            || (p.CanDelete && action == "Delete")
+            //            || (p.CanRead && action == "Read"))
+            //            select p;
+            var querySyntaxMethod = _functionRepository
+                .FindAll()
+                .Join(_permissionRepository.FindAll(), f => f.Id, p => p.FunctionId, (f, p) => new {f, p})
+                .Join(_roleManager.Roles, k => k.p.RoleId, r => r.Id, (k, r) => new {k, r})
+                .Where(x => roles.Contains(x.r.Name) && x.k.f.Id == functionId &&
+                            ((x.k.p.CanRead && action == "Read") || (x.k.p.CanUpdate && action == "Update") ||
+                             (x.k.p.CanCreate && action == "Create") || (x.k.p.CanDelete && action == "Delete")))
+                .Select(x => new {x});
+            return querySyntaxMethod.AnyAsync();
         }
 
         public async Task<bool> AddAsync(AppRoleViewModel roleViewModel)
@@ -130,44 +138,90 @@ namespace QL_Vat_Lieu_Xay_Dung_Services.Implementation
 
         public List<PermissionViewModel> GetListFunctionWithRole(Guid roleId)
         {
-            var functions = _functionRepository.FindAll();
-            var permissions = _permissionRepository.FindAll();
+            //var functions = _functionRepository.FindAll();
+            //var permissions = _permissionRepository.FindAll();
 
-            var query = from f in functions
-                        join p in permissions on f.Id equals p.FunctionId into fp
-                        from p in fp.DefaultIfEmpty()
-                        where p != null && p.RoleId == roleId
-                        select new PermissionViewModel()
-                        {
-                            RoleId = roleId,
-                            FunctionId = f.Id,
-                            CanCreate = p != null && p.CanCreate,
-                            CanDelete = p != null && p.CanDelete,
-                            CanRead = p != null && p.CanRead,
-                            CanUpdate = p != null && p.CanUpdate
-                        };
-            return query.ToList();
+            //var query = from f in functions
+            //            join p in permissions on f.Id equals p.FunctionId into fp
+            //            from p in fp.DefaultIfEmpty()
+            //            where p != null && p.RoleId == roleId
+            //            select new PermissionViewModel()
+            //            {
+            //                RoleId = roleId,
+            //                FunctionId = f.Id,
+            //                CanCreate = p != null && p.CanCreate,
+            //                CanDelete = p != null && p.CanDelete,
+            //                CanRead = p != null && p.CanRead,
+            //                CanUpdate = p != null && p.CanUpdate
+            //            };
+            var queryable = _functionRepository.FindAll()
+                .GroupJoin(_permissionRepository.FindAll(), f => f.Id,
+                p => p.FunctionId, (f, p) => new
+                {
+                    f = f,
+                    p = p
+                })
+                .SelectMany(kq => kq.p.DefaultIfEmpty(), (kq, p) => new
+                {
+                    p = p,
+                    kq = kq
+                })
+                .Where(x => x.p != null && x.p.RoleId == roleId)
+                .Select(x => new PermissionViewModel()
+                {
+                    RoleId = roleId,
+                    FunctionId = x.kq.f.Id,
+                    CanCreate = x.p != null && x.p.CanCreate,
+                    CanDelete = x.p != null && x.p.CanDelete,
+                    CanRead = x.p != null && x.p.CanRead,
+                    CanUpdate = x.p != null && x.p.CanUpdate
+                });
+            return queryable.ToList();
         }
         public IQueryable<FunctionViewModel> GetListFunctionWithRole_Function(Guid roleId)
         {
-            var functions = _functionRepository.FindAll();
-            var permissions = _permissionRepository.FindAll();
+            //var functions = _functionRepository.FindAll();
+            //var permissions = _permissionRepository.FindAll();
 
-            var query = from f in functions
-                        join p in permissions on f.Id equals p.FunctionId into fp
-                        from p in fp.DefaultIfEmpty()
-                        where p != null && p.RoleId == roleId && p.CanRead
-                        select new FunctionViewModel()
-                        {
-                            Id = f.Id,
-                            IconCss = f.IconCss,
-                            Name = f.Name,
-                            ParentId = f.ParentId,
-                            SortOrder = f.SortOrder,
-                            Status = f.Status,
-                            URL = f.URL
-                        };
-            return query;
+            //var query = from f in functions
+            //            join p in permissions on f.Id equals p.FunctionId into fp
+            //            from p in fp.DefaultIfEmpty()
+            //            where p != null && p.RoleId == roleId && p.CanRead
+            //            select new FunctionViewModel()
+            //            {
+            //                Id = f.Id,
+            //                IconCss = f.IconCss,
+            //                Name = f.Name,
+            //                ParentId = f.ParentId,
+            //                SortOrder = f.SortOrder,
+            //                Status = f.Status,
+            //                URL = f.URL
+            //            };
+
+            var queryable = _functionRepository.FindAll()
+                .GroupJoin(_permissionRepository.FindAll(), f => f.Id,
+                p => p.FunctionId, (f, p) => new
+                {
+                    f = f,
+                    p = p
+                })
+                .SelectMany(kq => kq.p.DefaultIfEmpty(), (kq, p) => new
+                {
+                    p = p,
+                    kq = kq
+                })
+                .Where(x => x.p != null && x.p.RoleId == roleId &&  x.p.CanRead)
+                .Select(x => new FunctionViewModel()
+                {
+                    Id = x.kq.f.Id,
+                    IconCss = x.kq.f.IconCss,
+                    Name = x.kq.f.Name,
+                    ParentId = x.kq.f.ParentId,
+                    SortOrder = x.kq.f.SortOrder,
+                    Status = x.kq.f.Status,
+                    URL = x.kq.f.URL
+                });
+            return queryable;
         }
 
         public void SavePermission(List<PermissionViewModel> permissionViewModels, Guid roleId)

@@ -25,9 +25,8 @@ namespace QL_Vat_Lieu_Xay_Dung_Services.AutoMapper
             CreateMap<AppUser, AppUserViewModel>();
 
             CreateMap<AppRole, AppRoleViewModel>();
-
+            CreateMap<Tag, TagViewModel>();
             CreateMap<Permission, PermissionViewModel>();
-
             CreateMap<Function, FunctionViewModel>();
             CreateMap<Bill, BillViewModel>();
             CreateMap<BillDetail, BillDetailViewModel>();
@@ -51,7 +50,7 @@ namespace QL_Vat_Lieu_Xay_Dung_Services.AutoMapper
                     c.PromotionPrice, c.Description, c.Content, c.HomeFlag, c.HotFlag, c.Tags, c.Unit, c.Status,
                     c.SeoPageTitle, c.SeoAlias, c.SeoKeywords, c.SeoDescription));
             CreateMap<AppUserViewModel, AppUser>();
-
+            CreateMap<TagViewModel, Tag>();
             CreateMap<AppRoleViewModel, AppRole>();
 
             CreateMap<FunctionViewModel, Function>();

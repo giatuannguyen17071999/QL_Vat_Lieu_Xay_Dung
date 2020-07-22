@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using QL_Vat_Lieu_Xay_Dung_Data.Entities;
@@ -10,7 +9,6 @@ using QL_Vat_Lieu_Xay_Dung_Infrastructure.Interfaces;
 using QL_Vat_Lieu_Xay_Dung_Services.Interfaces;
 using QL_Vat_Lieu_Xay_Dung_Services.ViewModels.Common;
 using QL_Vat_Lieu_Xay_Dung_Services.ViewModels.Product;
-using QL_Vat_Lieu_Xay_Dung_Utilities.Constants;
 using QL_Vat_Lieu_Xay_Dung_Utilities.Dtos;
 using QL_Vat_Lieu_Xay_Dung_Utilities.Helpers;
 
@@ -53,22 +51,12 @@ namespace QL_Vat_Lieu_Xay_Dung_Services.Implementation
                var tags = productViewModel.Tags.Split(',');
                 foreach (var t in tags)
                 {
-                    var tagId = AliasHelper.ConvertToAlias(t);
+                    var tagId = AliasHelper.ConvertToAlias(t.Trim());
                     if (!_tagRepository.FindAll(x => x.Id == tagId).Any())
                     {
-                        var tag = new Tag
-                        {
-                            Id = tagId,
-                            Name = t
-                        };
-                        _tagRepository.Add(tag);
+                        _tagRepository.Add(new Tag { Id = tagId, Name = t });
                     }
-
-                    var productTag = new ProductTag
-                    {
-                        TagId = tagId
-                    };
-                    productTags.Add(productTag);
+                    productTags.Add(new ProductTag { TagId = tagId });
                 }
                 var product = _mapper.Map<ProductViewModel, Product>(productViewModel);
                 foreach (var productTag in productTags)
@@ -89,21 +77,15 @@ namespace QL_Vat_Lieu_Xay_Dung_Services.Implementation
                 var tags = productViewModel.Tags.Split(',');
                 foreach (var t in tags)
                 {
-                    var tagId = AliasHelper.ConvertToAlias(t);
+                    var tagId = AliasHelper.ConvertToAlias(t.Trim());
                     if (!_tagRepository.FindAll(x => x.Id == tagId).Any())
                     {
-                        var tag = new Tag {Id = tagId, Name = t};
-                        _tagRepository.Add(tag);
+                        _tagRepository.Add(new Tag { Id = tagId, Name = t });
                     }
                     _productTagRepository.RemoveMultiple(_productTagRepository.FindAll(x => x.Id == productViewModel.Id).ToList());
-                    var productTag = new ProductTag
-                    {
-                        TagId = tagId
-                    };
-                    productTags.Add(productTag);
+                    productTags.Add(new ProductTag { TagId = tagId });
                 }
             }
-
             var product = _mapper.Map<ProductViewModel, Product>(productViewModel);
             foreach (var productTag in productTags)
             {
@@ -126,7 +108,7 @@ namespace QL_Vat_Lieu_Xay_Dung_Services.Implementation
         {
             _unitOfWork.Commit();
         }
-        public PagedResult<ProductViewModel> GetAllPaging(int? categoryId, string keyword, int page, int pageSize)
+        public PagedResult<ProductViewModel> GetAllPaging(int? categoryId, string keyword, int page, int pageSize,string sort = null)
         {
             var query = _productRepository.FindAll(x => x.Status == Status.Active);
             if (!string.IsNullOrEmpty(keyword))
@@ -138,9 +120,17 @@ namespace QL_Vat_Lieu_Xay_Dung_Services.Implementation
             {
                 query = query.Where(x => x.CategoryId == categoryId.Value);
             }
-
+            // switch expression của linq
+            query = sort switch
+            {
+                "name" => query.OrderByDescending(x => x.Name),
+                "price_low_to_high" => query.OrderBy(x => x.Price),
+                "price_high_to_low" => query.OrderByDescending(x => x.Price),
+                "price_sell" => query.OrderByDescending(x => x.PromotionPrice.Value),
+                _ => query.OrderByDescending(x => x.DateCreated)
+            };
             var totalRow = query.Count();
-            query = query.OrderByDescending(x => x.DateCreated).Skip((page - 1) * pageSize).Take(pageSize);
+            query = query.Skip((page - 1) * pageSize).Take(pageSize);
             var data = _mapper.ProjectTo<ProductViewModel>(query).ToList();
             var paginationSet = new PagedResult<ProductViewModel>()
             {
@@ -244,19 +234,12 @@ namespace QL_Vat_Lieu_Xay_Dung_Services.Implementation
 
         public List<TagViewModel> GetProductTags(int productId)
         {
-            var tags = _tagRepository.FindAll();
-            var productTags = _productTagRepository.FindAll();
-
-            var query = from t in tags
-                join pt in productTags
-                    on t.Id equals pt.TagId
-                where pt.ProductId == productId
-                select new TagViewModel()
+            return _tagRepository.FindAll().Join(_productTagRepository.FindAll(), t => t.Id, p => p.TagId, (x, y) =>
+                new TagViewModel()
                 {
-                    Id = t.Id,
-                    Name = t.Name
-                };
-            return query.ToList();
+                    Id = x.Id,
+                    Name = x.Name
+                }).ToList();
         }
 
         public bool CheckAvailability(int productId, int size)

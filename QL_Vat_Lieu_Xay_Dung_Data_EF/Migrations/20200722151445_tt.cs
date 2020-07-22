@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace QL_Vat_Lieu_Xay_Dung_Data_EF.Migrations
 {
-    public partial class initial : Migration
+    public partial class tt : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -271,7 +271,6 @@ namespace QL_Vat_Lieu_Xay_Dung_Data_EF.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
-                    ProductId = table.Column<int>(nullable: false),
                     Name = table.Column<string>(maxLength: 50, nullable: false)
                 },
                 constraints: table =>

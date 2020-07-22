@@ -165,17 +165,6 @@ namespace QL_Vat_Lieu_Xay_Dung_Services.Implementation
             return _mapper.ProjectTo<SizeViewModel>(_sizeRepository.FindAll()).ToList();
         }
 
-        public List<SizeViewModel> GetSizesByProduct(int id)
-        {
-            //var model = _sizeRepository.FindAll().Join(_productQuantityRepository.FindAll(), s => s.Id, pq => pq.SizeId,
-            //    (x, y) => new SizeViewModel
-            //    {
-            //        x.Id,
-            //        x.Name,
-            //    }).ToList();
-            return _mapper.ProjectTo<SizeViewModel>(_sizeRepository.FindAll()).ToList();
-        }
-
         public SizeViewModel GetSize(int id)
         {
             return _mapper.Map<Size, SizeViewModel>(_sizeRepository.FindById(id));

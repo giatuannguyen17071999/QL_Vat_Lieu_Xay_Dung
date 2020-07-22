@@ -62,8 +62,11 @@
                                 <li>
                                     <div class="dropdown">
                                         <a class="current-open" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
-                                            <span>@User.GetSpecificClaim("FullName")</span>
-                                            <img src="@User.GetSpecificClaim("Avatar")" alt="">@User.GetSpecificClaim("FullName")
+                                            @if (!string.IsNullOrEmpty(@User.GetSpecificClaim("Avatar")))
+                                            {
+                                            <img width="20" src="@User.GetSpecificClaim("Avatar")" alt="">
+                                            }
+                                            @User.GetSpecificClaim("FullName")
                                             <i class="fa fa-angle-down"></i>
                                         </a>
                                         <ul class="dropdown-menu" role="menu">
@@ -107,7 +110,7 @@
                             <div id="search">
                                 <form method="get" action="/search.html">
                                     <div class="input-group">
-                                        <select class="cate-dropdown hidden-xs hidden-sm"  asp-items="selectedItems" id="categoryId"></select>
+                                        <select class="cate-dropdown hidden-xs hidden-sm"  asp-items="selectedItems" name ="categoryId"></select>
                                         @*<select  class="cate-dropdown hidden-xs hidden-sm" name="categoryId">
                                             <option>All Categories</option>
                                             <option>women</option>

@@ -10,6 +10,5 @@ namespace QL_Vat_Lieu_Xay_Dung_Services.ViewModels.Common
 
         public string Name { set; get; }
 
-        public string Type { set; get; }
     }
 }

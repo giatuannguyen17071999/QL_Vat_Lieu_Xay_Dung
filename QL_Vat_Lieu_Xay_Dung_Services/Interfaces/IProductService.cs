@@ -23,7 +23,7 @@ namespace QL_Vat_Lieu_Xay_Dung_Services.Interfaces
         List<ProductImageViewModel> GetImages(int productId);
 
         List<ProductViewModel> GetAllSearch(int? categoryId, string keyword);
-        PagedResult<ProductViewModel> GetAllPaging(int? categoryId, string keyword, int page, int pageSize);
+        PagedResult<ProductViewModel> GetAllPaging(int? categoryId, string keyword, int page, int pageSize,string sort = null);
         List<ProductViewModel> GetHotProducts(int top);
         List<ProductViewModel> GetTopSellProducts(int top);
         List<ProductViewModel> GetRelatedProducts(int id, int top);

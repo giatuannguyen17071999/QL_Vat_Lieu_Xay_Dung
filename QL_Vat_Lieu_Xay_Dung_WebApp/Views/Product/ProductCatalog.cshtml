@@ -1,5 +1,4 @@
-﻿
-@model QL_Vat_Lieu_Xay_Dung_WebApp.Models.ProductCatalogViewModel
+﻿@model QL_Vat_Lieu_Xay_Dung_WebApp.Models.ProductCatalogViewModel
 @{
     ViewData["Title"] = Model.ProductCategory.Name;
     ViewData["MetaKeyword"] = Model.ProductCategory.SeoKeywords;
@@ -27,70 +26,88 @@
         <div class="row">
             <div class="col-main col-sm-9 col-xs-12 col-sm-push-3">
                 <div class="shop-inner">
-                <div class="page-title">
-                    <h2>@Model.ProductCategory.Name</h2>
-                </div>
-                <div class="toolbar">
-                    <form action="/@Model.ProductCategory.SeoAlias-c.@(Model.ProductCategory.Id).html" method="get">
-                        <div class="sorter">
-                            <div class="short-by">
-                                <label>Sort By:</label>
-                                <select name="sortBy" asp-for="SortType"
-                                        onchange="this.form.submit()" asp-items="Model.SortTypes"></select>
-                            </div>
-                            <div class="short-by page">
-                                <label>Show:</label>
-                                <select name="pageSize" asp-for="PageSize" onchange="this.form.submit()"
-                                        asp-items="Model.PageSizes"></select>
-                            </div>
+                    <div class="page-title">
+                        <h2>@Model.ProductCategory.Name</h2>
+                    </div>
+                    @if (@Model.Data.PageCount > 0)
+                    {
+                        <div class="toolbar">
+                            <form action="/@Model.ProductCategory.SeoAlias-c.@(Model.ProductCategory.Id).html" method="get">
+                                <div class="sorter">
+                                    <div class="short-by">
+                                        <label>Sort By:</label>
+                                        <select name="sortBy" asp-for="SortType"
+                                                onchange="this.form.submit()" asp-items="Model.SortTypes"></select>
+                                    </div>
+                                    <div class="short-by page">
+                                        <label>Show:</label>
+                                        <select name="pageSize" asp-for="PageSize" onchange="this.form.submit()"
+                                                asp-items="Model.PageSizes"></select>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                    </form>
-                </div>
-                <div class="product-grid-area">
-                    <ul class="products-grid">
-                        @foreach (var item in Model.Data.ResultList)
-                        {
-                            <li class="item col-lg-4 col-md-4 col-sm-6 col-xs-6 ">
-                                <div class="product-item">
-                                    <div class="item-inner">
-                                        <div class="product-thumbnail">
-                                            <div class="icon-sale-label sale-left">Sale</div>
-                                            <div class="icon-new-label new-right">New</div>
-                                            <div class="pr-img-area">
-                                                <a title="Ipsums Dolors Untra" href="/@item.SeoAlias-p.@(item.Id).html">
-                                                    <figure> <img class="first-img" src="@item.Image" alt="@item.Name"> <img class="hover-img" src="@item.Image" alt="@item.Name"></figure>
-                                                </a>
-                                            </div>
-                                            <div class="pr-info-area">
-                                                <div class="pr-button">
-                                                    <div class="mt-button add_to_wishlist"> <a href="wishlist.html"> <i class="fa fa-heart"></i> </a> </div>
-                                                    <div class="mt-button add_to_compare"> <a href="compare.html"> <i class="fa fa-signal"></i> </a> </div>
-                                                    <div class="mt-button quick-view"> <a href="quick_view.html"> <i class="fa fa-search"></i> </a> </div>
+                    }
+                    <div class="product-grid-area">
+                        <ul class="products-grid">
+                            @foreach (var item in Model.Data.ResultList)
+                            {
+                                <li class="item col-lg-4 col-md-4 col-sm-6 col-xs-6 ">
+                                    <div class="product-item">
+                                        <div class="item-inner">
+                                            <div class="product-thumbnail">
+                                                @if (@item.PromotionPrice.HasValue)
+                                                {
+                                                    <div class="icon-sale-label sale-left">Sale</div>
+                                                    <div class="icon-new-label new-right">New</div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="icon-new-label new-right">New</div>
+                                                }
+                                                <div class="pr-img-area">
+                                                    <a title="@item.Name" href="/@item.SeoAlias-p.@(item.Id).html">
+                                                        <figure> <img class="first-img" src="@item.Image" alt="@item.Name"> <img class="hover-img" src="@item.Image" alt="@item.Name"></figure>
+                                                    </a>
+                                                </div>
+                                                <div class="pr-info-area">
+                                                    <div class="pr-button">
+                                                        <div class="mt-button add_to_wishlist"> <a href="wishlist.html"> <i class="fa fa-heart"></i> </a> </div>
+                                                        <div class="mt-button add_to_compare"> <a href="compare.html"> <i class="fa fa-signal"></i> </a> </div>
+                                                        <div class="mt-button quick-view"> <a href="quick_view.html"> <i class="fa fa-search"></i> </a> </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="item-info">
-                                            <div class="info-inner">
-                                                <div class="item-title"> <a title="@item.Name" href="/@item.SeoAlias-p.@(item.Id).html">@item.Name</a> </div>
-                                                <div class="item-content">
-                                                    <div class="rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> </div>
-                                                    <div class="item-price">
-                                                        <div class="price-box"> <span class="regular-price"> <span class="price">@item.Price.ToString("N0")</span> </span> </div>
-                                                    </div>
-                                                    <div class="pro-action">
-                                                        <button type="button" class="add-to-cart"><span> Add to Cart</span> </button>
+                                            <div class="item-info">
+                                                <div class="info-inner">
+                                                    <div class="item-title"> <a title="@item.Name" href="/@item.SeoAlias-p.@(item.Id).html">@item.Name</a> </div>
+                                                    <div class="item-content">
+                                                        <div class="rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> </div>
+                                                        <div class="item-price">
+                                                            @if (@item.PromotionPrice.HasValue)
+                                                            {
+                                                                <div class="price-box"> <span class="regular-price"> <span class="price">@string.Format(CultureInfo.GetCultureInfo("vi-VN"), "{0:C0}", item.PromotionPrice.Value)</span> </span> </div>
+
+                                                            }
+                                                            else
+                                                            {
+                                                                <div class="price-box"> <span class="regular-price"> <span class="price">@string.Format(CultureInfo.GetCultureInfo("vi-VN"), "{0:C0}", item.Price)</span> </span> </div>
+                                                            }
+                                                        </div>
+                                                        <div class="pro-action">
+                                                            <button type="button" class="add-to-cart"><span> Add to Cart</span> </button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </li>
+                                </li>
 
-                        }
-                    </ul>
+                            }
+                        </ul>
                     </div>
-                    @await Component.InvokeAsync("Pager",Model.Data)
+                    @await Component.InvokeAsync("Pager", Model.Data)
                 </div>
             </div>
             <aside class="sidebar col-sm-3 col-xs-12 col-sm-pull-9">
