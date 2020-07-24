@@ -64,3 +64,7 @@
 2020-07-22T22:36:23.8635528+07:00  [INF] Hosting environment: "Development" (c3307c92)
 2020-07-22T22:36:23.8655648+07:00  [INF] Content root path: "D:\Learning_Code\QL_Vat_Lieu_Xay_Dung\QL_Vat_Lieu_Xay_Dung_WebApp" (b5d60022)
 2020-07-22T22:36:31.8708187+07:00 800000f4-0007-ec00-b63f-84710c7967bb [INF] User logged in. (fdce0db4)
+2020-07-22T23:24:10.4444831+07:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-07-22T23:24:10.4927957+07:00  [INF] Hosting environment: "Development" (c3307c92)
+2020-07-22T23:24:10.4944697+07:00  [INF] Content root path: "D:\Learning_Code\QL_Vat_Lieu_Xay_Dung\QL_Vat_Lieu_Xay_Dung_WebApp" (b5d60022)
+2020-07-22T23:24:34.2345399+07:00 800000e9-0000-f400-b63f-84710c7967bb [INF] User logged in. (fdce0db4)

@@ -17,6 +17,11 @@
                 txtGroupAlias: {required: true }
             }
         });
+        $("#ddlShowPage").on("change", function() {
+            app.configs.pageSize = $(this).val();
+            app.configs.pageIndex = 1;
+            loadData(true);
+        });
         $("#btnSearch").click(function (e) {
             e.preventDefault();
             loadData();
@@ -48,10 +53,8 @@
                     var data = response;
                     $("#hidId").val(data.Id);
                     $("#txtName").val(data.Name);
-                    $("#txtDesc").val(data.Description);
                     $("#txtImage").val(data.Image);
                     $("#txtUrl").val(data.Url);
-                    $("#txtContent").val(data.Content);
                     $("#txtDisplayOrder").val(data.DisplayOrder);
                     $("#txtGroupAlias").val(data.GroupAlias);
                     $("#ckStatus").prop("checked", data.Status === 1);
@@ -94,10 +97,8 @@
                 e.preventDefault();
                 var id = $("#hidId").val();
                 var name = $("#txtName").val();
-                var description = $("#txtDesc").val();
                 var image = $("#txtImage").val();
                 var url = $("#txtUrl").val();
-                var content = $("#txtContent").val();
                 var displayOrder = $("#txtDisplayOrder").val();
                 var groupAlias = $("#txtGroupAlias").val();
                 var status = $("#ckStatus").prop("checked") === true ? 1 : 0;
@@ -109,10 +110,8 @@
                     data: {
                         Id: id,
                         Name: name,
-                        Description: description,
                         Image: image,
                         Url: url,
-                        Content: content,
                         DisplayOrder: displayOrder,
                         GroupAlias: groupAlias,
                         Status: status
@@ -169,10 +168,8 @@
     function resetFormMaintainance() {
         $("#hidId").val(0);
         $("#txtName").val("");
-        $("#txtDesc").val("");
         $("#txtImage").val("");
         $("#txtUrl").val("");
-        $("#txtContent").val("");
         $("#txtDisplayOrder").val(0);
         $("#txtGroupAlias").val("");
         $("#ckStatus").prop("checked", true);

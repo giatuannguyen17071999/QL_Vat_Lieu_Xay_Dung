@@ -10,8 +10,8 @@ using QL_Vat_Lieu_Xay_Dung_Data_EF;
 namespace QL_Vat_Lieu_Xay_Dung_Data_EF.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200722151445_tt")]
-    partial class tt
+    [Migration("20200723115258_initialize")]
+    partial class initialize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -747,13 +747,6 @@ namespace QL_Vat_Lieu_Xay_Dung_Data_EF.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(250)")
-                        .HasMaxLength(250);
 
                     b.Property<int?>("DisplayOrder")
                         .HasColumnType("int");

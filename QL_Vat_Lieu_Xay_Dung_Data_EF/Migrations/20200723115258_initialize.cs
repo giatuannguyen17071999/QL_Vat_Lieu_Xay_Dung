@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace QL_Vat_Lieu_Xay_Dung_Data_EF.Migrations
 {
-    public partial class tt : Migration
+    public partial class initialize : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -235,12 +235,10 @@ namespace QL_Vat_Lieu_Xay_Dung_Data_EF.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(maxLength: 250, nullable: false),
-                    Description = table.Column<string>(maxLength: 250, nullable: true),
                     Image = table.Column<string>(maxLength: 250, nullable: false),
                     Url = table.Column<string>(maxLength: 250, nullable: true),
                     DisplayOrder = table.Column<int>(nullable: true),
                     Status = table.Column<int>(nullable: false),
-                    Content = table.Column<string>(nullable: true),
                     GroupAlias = table.Column<string>(maxLength: 25, nullable: false)
                 },
                 constraints: table =>

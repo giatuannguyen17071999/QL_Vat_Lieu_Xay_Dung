@@ -80,6 +80,9 @@ namespace QL_Vat_Lieu_Xay_Dung_WebApi
             services.AddTransient<IFunctionService, FunctionService>();
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IRoleService, RoleService>();
+            services.AddTransient<IBillService, BillService>();
+            services.AddTransient<IFooterService, FooterService>();
+            services.AddTransient<ISlideService, SlideService>();
             services.AddSwaggerGen(s =>
             {
                 s.SwaggerDoc("v1", new OpenApiInfo

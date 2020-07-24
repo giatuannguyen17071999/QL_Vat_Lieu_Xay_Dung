@@ -63,7 +63,7 @@ namespace QL_Vat_Lieu_Xay_Dung_Services.AutoMapper
             CreateMap<BillDetailViewModel, BillDetail>();
             CreateMap<ProductQuantityViewModel, ProductQuantity>();
             CreateMap<ProductImageViewModel, ProductImage>();
-            CreateMap<SlideViewModel, Slide>().ConstructUsing(c => new Slide(c.Id,c.Name,c.Description, c.Image,c.Url,c.DisplayOrder,c.Status,c.Content,c.GroupAlias));
+            CreateMap<SlideViewModel, Slide>().ConstructUsing(c => new Slide(c.Id,c.Name, c.Image,c.Url,c.DisplayOrder,c.Status,c.GroupAlias));
             CreateMap<FooterViewModel, Footer>();
             CreateMap<SystemConfigViewModel, SystemConfig>();
             #endregion

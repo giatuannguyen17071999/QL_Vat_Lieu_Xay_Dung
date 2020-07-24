@@ -17,35 +17,29 @@ namespace QL_Vat_Lieu_Xay_Dung_Data.Entities
 
         }
 
-        public Slide(int id,string name,string description,string image,string url,int? displayOrder, Status status,string content, string groupAlias)
+        public Slide(int id,string name,string image,string url,int? displayOrder, Status status, string groupAlias)
         {
             Id = id;
             Name = name;
-            Description = description;
             Image = image;
             Url = url;
             DisplayOrder = displayOrder;
             Status = status;
-            Content = content;
             GroupAlias = groupAlias;
         }
-        public Slide(string name, string description, string image, string url, int? displayOrder, Status status, string content, string groupAlias)
+        public Slide(string name, string image, string url, int? displayOrder, Status status, string groupAlias)
         {
             Name = name;
-            Description = description;
             Image = image;
             Url = url;
             DisplayOrder = displayOrder;
             Status = status;
-            Content = content;
             GroupAlias = groupAlias;
         }
         [StringLength(250)]
         [Required]
         public string Name { set; get; }
 
-        [StringLength(250)]
-        public string Description { set; get; }
 
         [StringLength(250)]
         [Required]
@@ -58,7 +52,6 @@ namespace QL_Vat_Lieu_Xay_Dung_Data.Entities
 
         public Status Status { get; set; }
 
-        public string Content { set; get; }
         // cái này dùng để group nhiều slide lại để select
         [StringLength(25)]
         [Required]

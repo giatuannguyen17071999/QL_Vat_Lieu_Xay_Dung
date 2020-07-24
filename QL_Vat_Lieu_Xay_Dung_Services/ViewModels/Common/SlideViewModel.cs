@@ -12,10 +12,6 @@ namespace QL_Vat_Lieu_Xay_Dung_Services.ViewModels.Common
         [StringLength(250)]
         [Required]
         public string Name { set; get; }
-
-        [StringLength(250)]
-        public string Description { set; get; }
-
         [StringLength(250)]
         [Required]
         public string Image { set; get; }
@@ -28,7 +24,6 @@ namespace QL_Vat_Lieu_Xay_Dung_Services.ViewModels.Common
         public Status Status { get; set; }
 
 
-        public string Content { set; get; }
         // cái này dùng để group nhiều slide lại để select
         [StringLength(25)]
         [Required]
