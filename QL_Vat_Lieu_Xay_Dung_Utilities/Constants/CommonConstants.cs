@@ -10,6 +10,7 @@ namespace QL_Vat_Lieu_Xay_Dung_Utilities.Constants
         public const string AdminRole = "Admin";
         public const string ProductTag = "ProductTag";
         public const string Roles = "Roles";
+        public const string CartSession = "CartSession";
 
     }
 }
