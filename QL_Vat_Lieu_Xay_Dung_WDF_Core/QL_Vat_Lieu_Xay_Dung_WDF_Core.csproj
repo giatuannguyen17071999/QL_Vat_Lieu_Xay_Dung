@@ -42,7 +42,7 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.0.1" />
-    <PackageReference Include="DevExpress.AspNetCore.Common" Version="19.2.5" />
+    <PackageReference Include="DevExpress.AspNetCore.Common" Version="20.1.3" />
     <PackageReference Include="DevExpress.WindowsDesktop.Charts" Version="20.1.4" />
     <PackageReference Include="DevExpress.WindowsDesktop.Charts.Core" Version="20.1.4" />
     <PackageReference Include="DevExpress.WindowsDesktop.CodeParser" Version="20.1.4" />
