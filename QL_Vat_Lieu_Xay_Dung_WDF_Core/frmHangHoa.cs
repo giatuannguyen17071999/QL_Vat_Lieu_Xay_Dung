@@ -27,7 +27,7 @@ namespace QL_Vat_Lieu_Xay_Dung_WDF_Core
 
         private void frmHangHoa_Load(object sender, EventArgs e)
         {
-            gv_HangHoa.DataSource = _productService.GetAll();
+            datagv_HangHoa.DataSource = _productService.GetAll();
         }
     }
 }

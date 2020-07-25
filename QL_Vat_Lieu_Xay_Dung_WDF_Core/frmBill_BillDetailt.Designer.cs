@@ -39,7 +39,6 @@
             this.lblMaSP = new DevExpress.XtraEditors.LabelControl();
             this.lblDonGia = new DevExpress.XtraEditors.LabelControl();
             this.lblSoLuong = new DevExpress.XtraEditors.LabelControl();
-            this.gv_CTHoaDon = new System.Windows.Forms.DataGridView();
             this.stackPanel2 = new DevExpress.Utils.Layout.StackPanel();
             this.btnThemCTHD = new DevExpress.XtraEditors.SimpleButton();
             this.btnSuaCTHD = new DevExpress.XtraEditors.SimpleButton();
@@ -53,7 +52,6 @@
             this.txtDiaChi = new DevExpress.XtraEditors.TextEdit();
             this.txtTenKH = new DevExpress.XtraEditors.TextEdit();
             this.txtMaHD = new DevExpress.XtraEditors.TextEdit();
-            this.txtMaKH = new DevExpress.XtraEditors.TextEdit();
             this.lblMaHoaDon = new DevExpress.XtraEditors.LabelControl();
             this.lblMaKH = new DevExpress.XtraEditors.LabelControl();
             this.lblPhuongThucThanhToan = new DevExpress.XtraEditors.LabelControl();
@@ -64,7 +62,18 @@
             this.stackPanel1 = new DevExpress.Utils.Layout.StackPanel();
             this.btnThemHD = new DevExpress.XtraEditors.SimpleButton();
             this.btnTimKiemHD = new DevExpress.XtraEditors.SimpleButton();
-            this.gv_HoaDon = new System.Windows.Forms.DataGridView();
+            this.cbMaKHach = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.stackPanel3 = new DevExpress.Utils.Layout.StackPanel();
+            this.lblSoSanPham = new DevExpress.XtraEditors.LabelControl();
+            this.txtSoSanPham = new DevExpress.XtraEditors.TextEdit();
+            this.lblTongTien = new DevExpress.XtraEditors.LabelControl();
+            this.txtTongTien = new DevExpress.XtraEditors.TextEdit();
+            this.lblNgayTao = new DevExpress.XtraEditors.LabelControl();
+            this.dateEditNgayTao = new DevExpress.XtraEditors.DateEdit();
+            this.datagv_HoaDon = new DevExpress.XtraGrid.GridControl();
+            this.gv_HoaDon = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.datagv_CTHoaDon = new DevExpress.XtraGrid.GridControl();
+            this.gv_CTHoaDon = new DevExpress.XtraGrid.Views.Grid.GridView();
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel1)).BeginInit();
             this.tablePanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelInfor)).BeginInit();
@@ -74,7 +83,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtSoLuong.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaCTHD.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbMaSP.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gv_CTHoaDon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stackPanel2)).BeginInit();
             this.stackPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel2)).BeginInit();
@@ -86,10 +94,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtDiaChi.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTenKH.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaHD.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMaKH.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stackPanel1)).BeginInit();
             this.stackPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cbMaKHach.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stackPanel3)).BeginInit();
+            this.stackPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSoSanPham.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTongTien.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEditNgayTao.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEditNgayTao.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datagv_HoaDon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv_HoaDon)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datagv_CTHoaDon)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gv_CTHoaDon)).BeginInit();
             this.SuspendLayout();
             // 
             // tablePanel1
@@ -97,6 +114,7 @@
             this.tablePanel1.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] {
             new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 33.27F),
             new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 26.73F)});
+            this.tablePanel1.Controls.Add(this.stackPanel3);
             this.tablePanel1.Controls.Add(this.panelInfor);
             this.tablePanel1.Controls.Add(this.tablePanel2);
             this.tablePanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -104,8 +122,9 @@
             this.tablePanel1.Margin = new System.Windows.Forms.Padding(50);
             this.tablePanel1.Name = "tablePanel1";
             this.tablePanel1.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] {
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 746.7988F),
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F)});
-            this.tablePanel1.Size = new System.Drawing.Size(1482, 749);
+            this.tablePanel1.Size = new System.Drawing.Size(1482, 812);
             this.tablePanel1.TabIndex = 0;
             // 
             // panelInfor
@@ -116,8 +135,8 @@
             this.panelInfor.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] {
             new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 26.77F),
             new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 78.23F)});
+            this.panelInfor.Controls.Add(this.datagv_CTHoaDon);
             this.panelInfor.Controls.Add(this.panel2);
-            this.panelInfor.Controls.Add(this.gv_CTHoaDon);
             this.panelInfor.Controls.Add(this.stackPanel2);
             this.panelInfor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelInfor.Location = new System.Drawing.Point(825, 3);
@@ -126,7 +145,7 @@
             this.panelInfor.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] {
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 612.3955F),
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F)});
-            this.panelInfor.Size = new System.Drawing.Size(654, 743);
+            this.panelInfor.Size = new System.Drawing.Size(654, 741);
             this.panelInfor.TabIndex = 2;
             // 
             // panel2
@@ -146,7 +165,7 @@
             this.panel2.Location = new System.Drawing.Point(3, 615);
             this.panel2.Name = "panel2";
             this.panelInfor.SetRow(this.panel2, 1);
-            this.panel2.Size = new System.Drawing.Size(648, 125);
+            this.panel2.Size = new System.Drawing.Size(648, 123);
             this.panel2.TabIndex = 5;
             // 
             // txtDonGia
@@ -238,19 +257,6 @@
             this.lblSoLuong.Size = new System.Drawing.Size(55, 17);
             this.lblSoLuong.TabIndex = 9;
             this.lblSoLuong.Text = "Số lượng";
-            // 
-            // gv_CTHoaDon
-            // 
-            this.panelInfor.SetColumn(this.gv_CTHoaDon, 1);
-            this.gv_CTHoaDon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gv_CTHoaDon.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gv_CTHoaDon.Location = new System.Drawing.Point(170, 3);
-            this.gv_CTHoaDon.Name = "gv_CTHoaDon";
-            this.panelInfor.SetRow(this.gv_CTHoaDon, 0);
-            this.gv_CTHoaDon.RowHeadersWidth = 51;
-            this.gv_CTHoaDon.RowTemplate.Height = 24;
-            this.gv_CTHoaDon.Size = new System.Drawing.Size(481, 606);
-            this.gv_CTHoaDon.TabIndex = 4;
             // 
             // stackPanel2
             // 
@@ -347,9 +353,9 @@
             this.tablePanel2.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] {
             new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 24.37F),
             new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 80.63F)});
+            this.tablePanel2.Controls.Add(this.datagv_HoaDon);
             this.tablePanel2.Controls.Add(this.panel1);
             this.tablePanel2.Controls.Add(this.stackPanel1);
-            this.tablePanel2.Controls.Add(this.gv_HoaDon);
             this.tablePanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tablePanel2.Location = new System.Drawing.Point(3, 3);
             this.tablePanel2.Name = "tablePanel2";
@@ -357,7 +363,7 @@
             this.tablePanel2.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] {
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 187.6003F),
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 380.3963F)});
-            this.tablePanel2.Size = new System.Drawing.Size(816, 743);
+            this.tablePanel2.Size = new System.Drawing.Size(816, 741);
             this.tablePanel2.TabIndex = 1;
             // 
             // panel1
@@ -365,13 +371,13 @@
             this.panel1.BackColor = System.Drawing.Color.LightSkyBlue;
             this.tablePanel2.SetColumn(this.panel1, 0);
             this.tablePanel2.SetColumnSpan(this.panel1, 2);
+            this.panel1.Controls.Add(this.cbMaKHach);
             this.panel1.Controls.Add(this.txtDienThoai);
             this.panel1.Controls.Add(this.txtPTThanhToan);
             this.panel1.Controls.Add(this.txtGhiChu);
             this.panel1.Controls.Add(this.txtDiaChi);
             this.panel1.Controls.Add(this.txtTenKH);
             this.panel1.Controls.Add(this.txtMaHD);
-            this.panel1.Controls.Add(this.txtMaKH);
             this.panel1.Controls.Add(this.lblMaHoaDon);
             this.panel1.Controls.Add(this.lblMaKH);
             this.panel1.Controls.Add(this.lblPhuongThucThanhToan);
@@ -433,14 +439,6 @@
             this.txtMaHD.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
             this.txtMaHD.Size = new System.Drawing.Size(242, 24);
             this.txtMaHD.TabIndex = 6;
-            // 
-            // txtMaKH
-            // 
-            this.txtMaKH.Location = new System.Drawing.Point(117, 54);
-            this.txtMaKH.Name = "txtMaKH";
-            this.txtMaKH.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
-            this.txtMaKH.Size = new System.Drawing.Size(242, 24);
-            this.txtMaKH.TabIndex = 6;
             // 
             // lblMaHoaDon
             // 
@@ -525,7 +523,7 @@
             this.stackPanel1.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.stackPanel1.Name = "stackPanel1";
             this.tablePanel2.SetRow(this.stackPanel1, 2);
-            this.stackPanel1.Size = new System.Drawing.Size(183, 542);
+            this.stackPanel1.Size = new System.Drawing.Size(183, 540);
             this.stackPanel1.TabIndex = 3;
             // 
             // btnThemHD
@@ -566,24 +564,149 @@
             this.btnTimKiemHD.TabIndex = 9;
             this.btnTimKiemHD.Text = "Tìm kiếm";
             // 
+            // cbMaKHach
+            // 
+            this.cbMaKHach.Location = new System.Drawing.Point(117, 56);
+            this.cbMaKHach.Name = "cbMaKHach";
+            this.cbMaKHach.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbMaKHach.Properties.Appearance.Options.UseFont = true;
+            this.cbMaKHach.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
+            this.cbMaKHach.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbMaKHach.Size = new System.Drawing.Size(242, 26);
+            this.cbMaKHach.TabIndex = 7;
+            // 
+            // stackPanel3
+            // 
+            this.tablePanel1.SetColumn(this.stackPanel3, 0);
+            this.tablePanel1.SetColumnSpan(this.stackPanel3, 2);
+            this.stackPanel3.Controls.Add(this.txtTongTien);
+            this.stackPanel3.Controls.Add(this.lblTongTien);
+            this.stackPanel3.Controls.Add(this.txtSoSanPham);
+            this.stackPanel3.Controls.Add(this.lblSoSanPham);
+            this.stackPanel3.Controls.Add(this.dateEditNgayTao);
+            this.stackPanel3.Controls.Add(this.lblNgayTao);
+            this.stackPanel3.LayoutDirection = DevExpress.Utils.Layout.StackPanelLayoutDirection.RightToLeft;
+            this.stackPanel3.Location = new System.Drawing.Point(3, 750);
+            this.stackPanel3.Name = "stackPanel3";
+            this.tablePanel1.SetRow(this.stackPanel3, 1);
+            this.stackPanel3.Size = new System.Drawing.Size(1476, 59);
+            this.stackPanel3.TabIndex = 3;
+            // 
+            // lblSoSanPham
+            // 
+            this.lblSoSanPham.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSoSanPham.Appearance.Options.UseFont = true;
+            this.lblSoSanPham.Location = new System.Drawing.Point(709, 19);
+            this.lblSoSanPham.Margin = new System.Windows.Forms.Padding(300, 3, 3, 3);
+            this.lblSoSanPham.Name = "lblSoSanPham";
+            this.lblSoSanPham.Size = new System.Drawing.Size(110, 21);
+            this.lblSoSanPham.TabIndex = 0;
+            this.lblSoSanPham.Text = "Số sản phẩm";
+            // 
+            // txtSoSanPham
+            // 
+            this.txtSoSanPham.Location = new System.Drawing.Point(832, 15);
+            this.txtSoSanPham.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
+            this.txtSoSanPham.Name = "txtSoSanPham";
+            this.txtSoSanPham.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSoSanPham.Properties.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.txtSoSanPham.Properties.Appearance.Options.UseFont = true;
+            this.txtSoSanPham.Properties.Appearance.Options.UseForeColor = true;
+            this.txtSoSanPham.Properties.ReadOnly = true;
+            this.txtSoSanPham.Size = new System.Drawing.Size(149, 28);
+            this.txtSoSanPham.TabIndex = 1;
+            // 
+            // lblTongTien
+            // 
+            this.lblTongTien.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTongTien.Appearance.Options.UseFont = true;
+            this.lblTongTien.Location = new System.Drawing.Point(1021, 19);
+            this.lblTongTien.Margin = new System.Windows.Forms.Padding(30, 3, 3, 3);
+            this.lblTongTien.Name = "lblTongTien";
+            this.lblTongTien.Size = new System.Drawing.Size(81, 21);
+            this.lblTongTien.TabIndex = 2;
+            this.lblTongTien.Text = "Tổng tiền";
+            // 
+            // txtTongTien
+            // 
+            this.txtTongTien.Location = new System.Drawing.Point(1115, 15);
+            this.txtTongTien.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
+            this.txtTongTien.Name = "txtTongTien";
+            this.txtTongTien.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTongTien.Properties.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.txtTongTien.Properties.Appearance.Options.UseFont = true;
+            this.txtTongTien.Properties.Appearance.Options.UseForeColor = true;
+            this.txtTongTien.Properties.ReadOnly = true;
+            this.txtTongTien.Size = new System.Drawing.Size(351, 28);
+            this.txtTongTien.TabIndex = 3;
+            // 
+            // lblNgayTao
+            // 
+            this.lblNgayTao.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNgayTao.Appearance.Options.UseFont = true;
+            this.lblNgayTao.Location = new System.Drawing.Point(92, 19);
+            this.lblNgayTao.Name = "lblNgayTao";
+            this.lblNgayTao.Size = new System.Drawing.Size(77, 21);
+            this.lblNgayTao.TabIndex = 4;
+            this.lblNgayTao.Text = "Ngày tạo";
+            // 
+            // dateEditNgayTao
+            // 
+            this.dateEditNgayTao.EditValue = null;
+            this.dateEditNgayTao.Location = new System.Drawing.Point(186, 15);
+            this.dateEditNgayTao.Margin = new System.Windows.Forms.Padding(14, 3, 10, 3);
+            this.dateEditNgayTao.Name = "dateEditNgayTao";
+            this.dateEditNgayTao.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateEditNgayTao.Properties.Appearance.Options.UseFont = true;
+            this.dateEditNgayTao.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEditNgayTao.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEditNgayTao.Size = new System.Drawing.Size(213, 28);
+            this.dateEditNgayTao.TabIndex = 5;
+            // 
+            // datagv_HoaDon
+            // 
+            this.tablePanel2.SetColumn(this.datagv_HoaDon, 1);
+            this.datagv_HoaDon.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.datagv_HoaDon.Location = new System.Drawing.Point(192, 191);
+            this.datagv_HoaDon.MainView = this.gv_HoaDon;
+            this.datagv_HoaDon.Name = "datagv_HoaDon";
+            this.tablePanel2.SetRow(this.datagv_HoaDon, 1);
+            this.datagv_HoaDon.Size = new System.Drawing.Size(621, 547);
+            this.datagv_HoaDon.TabIndex = 7;
+            this.datagv_HoaDon.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gv_HoaDon});
+            // 
             // gv_HoaDon
             // 
-            this.tablePanel2.SetColumn(this.gv_HoaDon, 1);
-            this.gv_HoaDon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gv_HoaDon.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gv_HoaDon.Location = new System.Drawing.Point(192, 191);
+            this.gv_HoaDon.GridControl = this.datagv_HoaDon;
             this.gv_HoaDon.Name = "gv_HoaDon";
-            this.tablePanel2.SetRow(this.gv_HoaDon, 1);
-            this.gv_HoaDon.RowHeadersWidth = 51;
-            this.gv_HoaDon.RowTemplate.Height = 24;
-            this.gv_HoaDon.Size = new System.Drawing.Size(621, 549);
-            this.gv_HoaDon.TabIndex = 1;
+            // 
+            // datagv_CTHoaDon
+            // 
+            this.panelInfor.SetColumn(this.datagv_CTHoaDon, 1);
+            this.datagv_CTHoaDon.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.datagv_CTHoaDon.Location = new System.Drawing.Point(170, 3);
+            this.datagv_CTHoaDon.MainView = this.gv_CTHoaDon;
+            this.datagv_CTHoaDon.Name = "datagv_CTHoaDon";
+            this.panelInfor.SetRow(this.datagv_CTHoaDon, 0);
+            this.datagv_CTHoaDon.Size = new System.Drawing.Size(481, 606);
+            this.datagv_CTHoaDon.TabIndex = 6;
+            this.datagv_CTHoaDon.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gv_CTHoaDon});
+            // 
+            // gv_CTHoaDon
+            // 
+            this.gv_CTHoaDon.GridControl = this.datagv_CTHoaDon;
+            this.gv_CTHoaDon.Name = "gv_CTHoaDon";
             // 
             // frmBill_BillDetailt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1482, 749);
+            this.ClientSize = new System.Drawing.Size(1482, 812);
             this.Controls.Add(this.tablePanel1);
             this.Name = "frmBill_BillDetailt";
             this.Text = "frmBill_BillDetailt";
@@ -597,7 +720,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtSoLuong.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaCTHD.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbMaSP.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gv_CTHoaDon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.stackPanel2)).EndInit();
             this.stackPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel2)).EndInit();
@@ -610,10 +732,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtDiaChi.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTenKH.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaHD.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMaKH.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.stackPanel1)).EndInit();
             this.stackPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cbMaKHach.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stackPanel3)).EndInit();
+            this.stackPanel3.ResumeLayout(false);
+            this.stackPanel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSoSanPham.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTongTien.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEditNgayTao.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEditNgayTao.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datagv_HoaDon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv_HoaDon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datagv_CTHoaDon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gv_CTHoaDon)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -622,7 +754,6 @@
 
         private DevExpress.Utils.Layout.TablePanel tablePanel1;
         private DevExpress.Utils.Layout.TablePanel tablePanel2;
-        private System.Windows.Forms.DataGridView gv_HoaDon;
         private DevExpress.Utils.Layout.StackPanel stackPanel1;
         private DevExpress.XtraEditors.SimpleButton btnThemHD;
         private DevExpress.XtraEditors.SimpleButton btnTimKiemHD;
@@ -633,7 +764,6 @@
         private DevExpress.XtraEditors.TextEdit txtDiaChi;
         private DevExpress.XtraEditors.TextEdit txtTenKH;
         private DevExpress.XtraEditors.TextEdit txtMaHD;
-        private DevExpress.XtraEditors.TextEdit txtMaKH;
         private DevExpress.XtraEditors.LabelControl lblMaHoaDon;
         private DevExpress.XtraEditors.LabelControl lblMaKH;
         private DevExpress.XtraEditors.LabelControl lblPhuongThucThanhToan;
@@ -642,7 +772,6 @@
         private DevExpress.XtraEditors.LabelControl lblDiaChi;
         private DevExpress.XtraEditors.LabelControl lblTenKH;
         private DevExpress.Utils.Layout.TablePanel panelInfor;
-        private System.Windows.Forms.DataGridView gv_CTHoaDon;
         private DevExpress.Utils.Layout.StackPanel stackPanel2;
         private DevExpress.XtraEditors.SimpleButton btnThemCTHD;
         private DevExpress.XtraEditors.SimpleButton btnSuaCTHD;
@@ -657,5 +786,17 @@
         private DevExpress.XtraEditors.TextEdit txtDonGia;
         private DevExpress.XtraEditors.TextEdit txtSoLuong;
         private DevExpress.XtraEditors.TextEdit txtMaCTHD;
+        private DevExpress.XtraEditors.ComboBoxEdit cbMaKHach;
+        private DevExpress.Utils.Layout.StackPanel stackPanel3;
+        private DevExpress.XtraEditors.TextEdit txtSoSanPham;
+        private DevExpress.XtraEditors.LabelControl lblSoSanPham;
+        private DevExpress.XtraEditors.TextEdit txtTongTien;
+        private DevExpress.XtraEditors.LabelControl lblTongTien;
+        private DevExpress.XtraEditors.DateEdit dateEditNgayTao;
+        private DevExpress.XtraEditors.LabelControl lblNgayTao;
+        private DevExpress.XtraGrid.GridControl datagv_HoaDon;
+        private DevExpress.XtraGrid.Views.Grid.GridView gv_HoaDon;
+        private DevExpress.XtraGrid.GridControl datagv_CTHoaDon;
+        private DevExpress.XtraGrid.Views.Grid.GridView gv_CTHoaDon;
     }
 }
