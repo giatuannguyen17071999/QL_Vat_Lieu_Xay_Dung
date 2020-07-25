@@ -106,10 +106,10 @@ namespace QL_Vat_Lieu_Xay_Dung_WebApp.Controllers
             var session = HttpContext.Session.Get<List<ShopCartViewModel>>(CommonConstants.CartSession);
             if (session != null)
             {
-                if (session.Any(x => x.Product.Id == productId))
+                if (session.Any(x => x.Product.Id == productId && x.SizeId == size))
                 {
                     foreach (var shopCartViewModel in session.Where(shopCartViewModel =>
-                        shopCartViewModel.Product.Id == productId))
+                        shopCartViewModel.Product.Id == productId && shopCartViewModel.SizeId == size))
                     {
                         shopCartViewModel.Quantity += quantity;
                         shopCartViewModel.Price = product.PromotionPrice ?? product.Price;

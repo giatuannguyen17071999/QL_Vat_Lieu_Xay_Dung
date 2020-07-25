@@ -80,6 +80,9 @@
     <!-- Slider Js -->
     <script type="text/javascript" src="~/assets/client/js/revolution-slider.js"></script>
 
-    @await RenderSectionAsync("Scripts", required: false)
+    <!-- client custom script-->
+    <script src="~/assets/client-app/client-shared/client-customScript.js"></script>
+
+@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

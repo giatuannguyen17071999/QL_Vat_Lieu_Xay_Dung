@@ -11,7 +11,6 @@ namespace QL_Vat_Lieu_Xay_Dung_WebApp.Models
     public class ProductDetailViewModel
     {
         public ProductViewModel Product { get; set; }
-
         public List<ProductViewModel> RelatedProducts { get; set; }
 
         public ProductCategoryViewModel ProductCategory { get; set; }
@@ -23,5 +22,6 @@ namespace QL_Vat_Lieu_Xay_Dung_WebApp.Models
         public List<ProductViewModel> LastestProducts { get; set; }
         public List<SelectListItem> Sizes { get; set; }
         public List<TagViewModel> Tags { set; get; }
+
     }
 }

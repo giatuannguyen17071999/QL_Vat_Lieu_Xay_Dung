@@ -81,11 +81,6 @@ namespace QL_Vat_Lieu_Xay_Dung_WebApp.Controllers
                 UpsellProducts = _productService.GetUpsellProducts(6),
                 ProductImages = _productService.GetImages(id),
                 Tags = _productService.GetProductTags(id),
-                //Sizes = _billService.GetSizes().Select(x => new SelectListItem()
-                //{
-                //    Text = x.Name,
-                //    Value = x.Id.ToString()
-                //}).ToList()
                 Sizes = _productService.GetQuantities(id).Select(x => new SelectListItem()
                 {
                     Text = x.Size.Name,

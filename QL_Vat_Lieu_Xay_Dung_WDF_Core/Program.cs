@@ -20,6 +20,7 @@ using QL_Vat_Lieu_Xay_Dung_Services;
 using QL_Vat_Lieu_Xay_Dung_Services.AutoMapper;
 using QL_Vat_Lieu_Xay_Dung_Services.Implementation;
 using QL_Vat_Lieu_Xay_Dung_WDF_Core.Authorization;
+using QL_Vat_Lieu_Xay_Dung_WDF_Core.Form_QuanLy;
 using QL_Vat_Lieu_Xay_Dung_WDF_Core.Helpers;
 
 namespace QL_Vat_Lieu_Xay_Dung_WDF_Core

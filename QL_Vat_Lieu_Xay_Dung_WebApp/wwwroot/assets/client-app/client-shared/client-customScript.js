@@ -1,4 +1,4 @@
-﻿var app = {
+﻿var client_app = {
     configs: {
         pageSize: 10,
         pageIndex: 1

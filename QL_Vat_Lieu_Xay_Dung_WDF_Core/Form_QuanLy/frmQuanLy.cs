@@ -1,14 +1,6 @@
-﻿using DevExpress.XtraBars;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using System;
 
-namespace QL_Vat_Lieu_Xay_Dung_WDF_Core
+namespace QL_Vat_Lieu_Xay_Dung_WDF_Core.Form_QuanLy
 {
     public partial class frmQuanLy : DevExpress.XtraBars.FluentDesignSystem.FluentDesignForm
     {
@@ -24,12 +16,12 @@ namespace QL_Vat_Lieu_Xay_Dung_WDF_Core
 
         private void aceManHinh_Click(object sender, EventArgs e)
         {
-          
+
         }
 
         private void acePhanQuyen_Click(object sender, EventArgs e)
         {
-          
+
         }
     }
 }

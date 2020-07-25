@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using QL_Vat_Lieu_Xay_Dung_WDF_Core.Form_QuanLy;
 
 namespace QL_Vat_Lieu_Xay_Dung_WDF_Core
 {
