@@ -21,5 +21,10 @@ namespace QL_Vat_Lieu_Xay_Dung_WinFormApp
         {
 
         }
+
+        private void MenuQuanLy_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
     }
 }
