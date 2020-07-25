@@ -49,7 +49,7 @@ namespace QL_Vat_Lieu_Xay_Dung_WDF_Core
 
             #region Đổi Form Ở Đây
             // Doi Form o day
-            Application.Run(services.GetRequiredService<frmLogin>());
+            Application.Run(services.GetRequiredService<frmNhomQuyen>());
             #endregion
         }
 
@@ -124,14 +124,15 @@ namespace QL_Vat_Lieu_Xay_Dung_WDF_Core
             //Add form vao service o day
 
             services.AddScoped<frmLogin>();
-            services.AddTransient<frmBill>();
             services.AddTransient<frmBill_BillDetailt>();
             services.AddTransient<frmDanhMucHangHoa>();
             services.AddTransient<frmHangHoa>();
             services.AddTransient<frmKhachHang_NCC>();
-            services.AddTransient<frmListProduct>();
             services.AddTransient<frmMain>();
-
+            services.AddTransient<frmManHinh>();
+            services.AddTransient<frmNhomQuyen>();
+            services.AddTransient<frmPhanQuyen>();
+            services.AddTransient<frmQuanLy>();
             #endregion
         }
     }

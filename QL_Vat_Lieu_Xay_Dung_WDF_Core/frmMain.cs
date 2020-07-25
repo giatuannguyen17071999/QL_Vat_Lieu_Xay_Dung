@@ -22,5 +22,10 @@ namespace QL_Vat_Lieu_Xay_Dung_WDF_Core
             MessageBox.Show("hi hi");
            
         }
+        private void MenuQuanLy_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            frmQuanLy f_quanLy = new frmQuanLy();
+            f_quanLy.Show();
+        }
     }
 }

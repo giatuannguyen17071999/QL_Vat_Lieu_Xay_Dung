@@ -53,13 +53,14 @@
             this.lblHinhAnh = new DevExpress.XtraEditors.LabelControl();
             this.lblDonGia = new DevExpress.XtraEditors.LabelControl();
             this.tablePanel1 = new DevExpress.Utils.Layout.TablePanel();
-            this.gv_HangHoa = new System.Windows.Forms.DataGridView();
             this.stackPanel1 = new DevExpress.Utils.Layout.StackPanel();
             this.btnThem = new DevExpress.XtraEditors.SimpleButton();
             this.btnSua = new DevExpress.XtraEditors.SimpleButton();
             this.btnXoa = new DevExpress.XtraEditors.SimpleButton();
             this.btnTimKiem = new DevExpress.XtraEditors.SimpleButton();
             this.xtraOpenFileDialog1 = new DevExpress.XtraEditors.XtraOpenFileDialog(this.components);
+            this.datagv_HangHoa = new DevExpress.XtraGrid.GridControl();
+            this.gv_HangHoa = new DevExpress.XtraGrid.Views.Grid.GridView();
             ((System.ComponentModel.ISupportInitialize)(this.cbMaDanhMucCha.Properties)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cbTrangThai.Properties)).BeginInit();
@@ -71,9 +72,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtMaKH.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel1)).BeginInit();
             this.tablePanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gv_HangHoa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stackPanel1)).BeginInit();
             this.stackPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.datagv_HangHoa)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gv_HangHoa)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraSaveFileDialog1
@@ -358,7 +360,7 @@
             this.tablePanel1.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] {
             new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 64.76F),
             new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 40.24F)});
-            this.tablePanel1.Controls.Add(this.gv_HangHoa);
+            this.tablePanel1.Controls.Add(this.datagv_HangHoa);
             this.tablePanel1.Controls.Add(this.stackPanel1);
             this.tablePanel1.Controls.Add(this.panel1);
             this.tablePanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -369,20 +371,6 @@
             new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F)});
             this.tablePanel1.Size = new System.Drawing.Size(1212, 745);
             this.tablePanel1.TabIndex = 2;
-            // 
-            // gv_HangHoa
-            // 
-            this.tablePanel1.SetColumn(this.gv_HangHoa, 0);
-            this.gv_HangHoa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gv_HangHoa.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gv_HangHoa.Location = new System.Drawing.Point(0, 0);
-            this.gv_HangHoa.Margin = new System.Windows.Forms.Padding(0, 0, 10, 10);
-            this.gv_HangHoa.Name = "gv_HangHoa";
-            this.tablePanel1.SetRow(this.gv_HangHoa, 0);
-            this.gv_HangHoa.RowHeadersWidth = 51;
-            this.gv_HangHoa.RowTemplate.Height = 24;
-            this.gv_HangHoa.Size = new System.Drawing.Size(738, 660);
-            this.gv_HangHoa.TabIndex = 3;
             // 
             // stackPanel1
             // 
@@ -482,6 +470,25 @@
             // 
             this.xtraOpenFileDialog1.FileName = "xtraOpenFileDialog1";
             // 
+            // datagv_HangHoa
+            // 
+            this.tablePanel1.SetColumn(this.datagv_HangHoa, 0);
+            this.datagv_HangHoa.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.datagv_HangHoa.Location = new System.Drawing.Point(10, 10);
+            this.datagv_HangHoa.MainView = this.gv_HangHoa;
+            this.datagv_HangHoa.Margin = new System.Windows.Forms.Padding(10);
+            this.datagv_HangHoa.Name = "datagv_HangHoa";
+            this.tablePanel1.SetRow(this.datagv_HangHoa, 0);
+            this.datagv_HangHoa.Size = new System.Drawing.Size(728, 650);
+            this.datagv_HangHoa.TabIndex = 3;
+            this.datagv_HangHoa.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gv_HangHoa});
+            // 
+            // gv_HangHoa
+            // 
+            this.gv_HangHoa.GridControl = this.datagv_HangHoa;
+            this.gv_HangHoa.Name = "gv_HangHoa";
+            // 
             // frmHangHoa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -503,9 +510,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtMaKH.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel1)).EndInit();
             this.tablePanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gv_HangHoa)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.stackPanel1)).EndInit();
             this.stackPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.datagv_HangHoa)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gv_HangHoa)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -536,12 +544,13 @@
         private DevExpress.XtraEditors.LabelControl lblNoiDung;
         private DevExpress.XtraEditors.LabelControl lblMoTa;
         private DevExpress.XtraEditors.LabelControl lblGiaKhuyenmai;
-        private System.Windows.Forms.DataGridView gv_HangHoa;
         private DevExpress.XtraEditors.ComboBoxEdit cbTrangThai;
         private DevExpress.XtraEditors.TextEdit txtMoTa;
         private DevExpress.XtraEditors.TextEdit txtGiaKhuyenMai;
         private DevExpress.XtraEditors.TextEdit txtDonViTinh;
         private System.Windows.Forms.TextBox textBox1;
         private DevExpress.XtraEditors.SimpleButton btnUpload;
+        private DevExpress.XtraGrid.GridControl datagv_HangHoa;
+        private DevExpress.XtraGrid.Views.Grid.GridView gv_HangHoa;
     }
 }

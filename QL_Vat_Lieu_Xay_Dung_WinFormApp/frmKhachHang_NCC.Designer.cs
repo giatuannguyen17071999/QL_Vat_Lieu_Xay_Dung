@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.gv_KhachHang_NCC = new System.Windows.Forms.DataGridView();
-            this.panelInfor = new DevExpress.Utils.Layout.TablePanel();
+            this.stackPanel1 = new DevExpress.Utils.Layout.StackPanel();
+            this.btnThem = new DevExpress.XtraEditors.SimpleButton();
+            this.btnSua = new DevExpress.XtraEditors.SimpleButton();
+            this.btnXoa = new DevExpress.XtraEditors.SimpleButton();
+            this.btnTimKiem = new DevExpress.XtraEditors.SimpleButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtEmail = new DevExpress.XtraEditors.TextEdit();
             this.txtTenUser = new DevExpress.XtraEditors.TextEdit();
@@ -43,14 +46,22 @@
             this.lblConfirmEmail = new DevExpress.XtraEditors.LabelControl();
             this.lblEmail = new DevExpress.XtraEditors.LabelControl();
             this.lblUserName = new DevExpress.XtraEditors.LabelControl();
-            this.stackPanel1 = new DevExpress.Utils.Layout.StackPanel();
-            this.btnThem = new DevExpress.XtraEditors.SimpleButton();
-            this.btnSua = new DevExpress.XtraEditors.SimpleButton();
-            this.btnXoa = new DevExpress.XtraEditors.SimpleButton();
-            this.btnTimKiem = new DevExpress.XtraEditors.SimpleButton();
-            ((System.ComponentModel.ISupportInitialize)(this.gv_KhachHang_NCC)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelInfor)).BeginInit();
-            this.panelInfor.SuspendLayout();
+            this.gv_Khach_NV_NhaCC = new DevExpress.XtraGrid.GridControl();
+            this.grid_Khach_NV_NhaCC = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.lslSuDung = new DevExpress.XtraEditors.LabelControl();
+            this.toggleSwitchSuDungAvatar = new DevExpress.XtraEditors.ToggleSwitch();
+            this.ptrAvatar = new DevExpress.XtraEditors.PictureEdit();
+            this.stackPanel2 = new DevExpress.Utils.Layout.StackPanel();
+            this.grpLoaiDoiTuong = new DevExpress.XtraEditors.GroupControl();
+            this.chkNhaCC = new DevExpress.XtraEditors.CheckButton();
+            this.chkNhanVien = new DevExpress.XtraEditors.CheckButton();
+            this.chkKhachHang = new DevExpress.XtraEditors.CheckButton();
+            this.radioGroup1 = new DevExpress.XtraEditors.RadioGroup();
+            this.panelInfor = new DevExpress.Utils.Layout.TablePanel();
+            ((System.ComponentModel.ISupportInitialize)(this.stackPanel1)).BeginInit();
+            this.stackPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTenUser.Properties)).BeginInit();
@@ -59,42 +70,113 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtMaUser.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateBirthday.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateBirthday.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stackPanel1)).BeginInit();
-            this.stackPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gv_Khach_NV_NhaCC)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grid_Khach_NV_NhaCC)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.toggleSwitchSuDungAvatar.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptrAvatar.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stackPanel2)).BeginInit();
+            this.stackPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grpLoaiDoiTuong)).BeginInit();
+            this.grpLoaiDoiTuong.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radioGroup1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelInfor)).BeginInit();
+            this.panelInfor.SuspendLayout();
             this.SuspendLayout();
             // 
-            // gv_KhachHang_NCC
+            // stackPanel1
             // 
-            this.panelInfor.SetColumn(this.gv_KhachHang_NCC, 0);
-            this.gv_KhachHang_NCC.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gv_KhachHang_NCC.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gv_KhachHang_NCC.Location = new System.Drawing.Point(3, 241);
-            this.gv_KhachHang_NCC.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.gv_KhachHang_NCC.Name = "gv_KhachHang_NCC";
-            this.panelInfor.SetRow(this.gv_KhachHang_NCC, 2);
-            this.gv_KhachHang_NCC.RowHeadersWidth = 51;
-            this.gv_KhachHang_NCC.RowTemplate.Height = 24;
-            this.gv_KhachHang_NCC.Size = new System.Drawing.Size(1182, 458);
-            this.gv_KhachHang_NCC.TabIndex = 2;
+            this.stackPanel1.Appearance.BackColor = System.Drawing.Color.White;
+            this.stackPanel1.Appearance.Options.UseBackColor = true;
+            this.panelInfor.SetColumn(this.stackPanel1, 0);
+            this.panelInfor.SetColumnSpan(this.stackPanel1, 2);
+            this.stackPanel1.Controls.Add(this.btnThem);
+            this.stackPanel1.Controls.Add(this.btnSua);
+            this.stackPanel1.Controls.Add(this.btnXoa);
+            this.stackPanel1.Controls.Add(this.btnTimKiem);
+            this.stackPanel1.Location = new System.Drawing.Point(3, 3);
+            this.stackPanel1.Name = "stackPanel1";
+            this.panelInfor.SetRow(this.stackPanel1, 0);
+            this.stackPanel1.Size = new System.Drawing.Size(1397, 62);
+            this.stackPanel1.TabIndex = 0;
             // 
-            // panelInfor
+            // btnThem
             // 
-            this.panelInfor.Appearance.BackColor = System.Drawing.Color.White;
-            this.panelInfor.Appearance.Options.UseBackColor = true;
-            this.panelInfor.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] {
-            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 55F)});
-            this.panelInfor.Controls.Add(this.panel1);
-            this.panelInfor.Controls.Add(this.gv_KhachHang_NCC);
-            this.panelInfor.Controls.Add(this.stackPanel1);
-            this.panelInfor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelInfor.Location = new System.Drawing.Point(0, 0);
-            this.panelInfor.Name = "panelInfor";
-            this.panelInfor.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] {
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 67.59998F),
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 173.2003F),
-            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F)});
-            this.panelInfor.Size = new System.Drawing.Size(1188, 702);
-            this.panelInfor.TabIndex = 0;
+            this.btnThem.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThem.Appearance.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnThem.Appearance.Options.UseFont = true;
+            this.btnThem.Appearance.Options.UseForeColor = true;
+            this.btnThem.Appearance.Options.UseTextOptions = true;
+            this.btnThem.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.btnThem.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnThem.ImageOptions.Image = global::QL_Vat_Lieu_Xay_Dung_WinFormApp.Properties.Resources.add_32x322;
+            this.btnThem.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnThem.Location = new System.Drawing.Point(20, -3);
+            this.btnThem.Margin = new System.Windows.Forms.Padding(20, 3, 20, 3);
+            this.btnThem.Name = "btnThem";
+            this.btnThem.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnThem.Size = new System.Drawing.Size(250, 68);
+            this.btnThem.TabIndex = 2;
+            this.btnThem.Text = "Thêm khách hàng,NCC";
+            // 
+            // btnSua
+            // 
+            this.btnSua.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSua.Appearance.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnSua.Appearance.Options.UseFont = true;
+            this.btnSua.Appearance.Options.UseForeColor = true;
+            this.btnSua.Appearance.Options.UseTextOptions = true;
+            this.btnSua.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.btnSua.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSua.ImageOptions.Image = global::QL_Vat_Lieu_Xay_Dung_WinFormApp.Properties.Resources.publicfix_32x32;
+            this.btnSua.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnSua.Location = new System.Drawing.Point(310, -3);
+            this.btnSua.Margin = new System.Windows.Forms.Padding(20, 3, 20, 3);
+            this.btnSua.Name = "btnSua";
+            this.btnSua.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnSua.Size = new System.Drawing.Size(300, 68);
+            this.btnSua.TabIndex = 3;
+            this.btnSua.Text = "Sửa thông tin khách hàng,NCC";
+            // 
+            // btnXoa
+            // 
+            this.btnXoa.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnXoa.Appearance.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnXoa.Appearance.Options.UseFont = true;
+            this.btnXoa.Appearance.Options.UseForeColor = true;
+            this.btnXoa.Appearance.Options.UseTextOptions = true;
+            this.btnXoa.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.btnXoa.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnXoa.ImageOptions.Image = global::QL_Vat_Lieu_Xay_Dung_WinFormApp.Properties.Resources.deletetablerows_32x32;
+            this.btnXoa.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnXoa.Location = new System.Drawing.Point(650, -3);
+            this.btnXoa.Margin = new System.Windows.Forms.Padding(20, 3, 20, 3);
+            this.btnXoa.Name = "btnXoa";
+            this.btnXoa.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnXoa.Size = new System.Drawing.Size(250, 68);
+            this.btnXoa.TabIndex = 4;
+            this.btnXoa.Text = "Xoá khách hàng,NCC";
+            // 
+            // btnTimKiem
+            // 
+            this.btnTimKiem.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTimKiem.Appearance.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnTimKiem.Appearance.Options.UseFont = true;
+            this.btnTimKiem.Appearance.Options.UseForeColor = true;
+            this.btnTimKiem.Appearance.Options.UseTextOptions = true;
+            this.btnTimKiem.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.btnTimKiem.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnTimKiem.ImageOptions.Image = global::QL_Vat_Lieu_Xay_Dung_WinFormApp.Properties.Resources.findcustomers_32x32;
+            this.btnTimKiem.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnTimKiem.Location = new System.Drawing.Point(940, -3);
+            this.btnTimKiem.Margin = new System.Windows.Forms.Padding(20, 3, 20, 3);
+            this.btnTimKiem.Name = "btnTimKiem";
+            this.btnTimKiem.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnTimKiem.Size = new System.Drawing.Size(250, 68);
+            this.btnTimKiem.TabIndex = 5;
+            this.btnTimKiem.Text = "Tìm kiếm";
             // 
             // panel1
             // 
@@ -117,7 +199,7 @@
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.panel1.Name = "panel1";
             this.panelInfor.SetRow(this.panel1, 1);
-            this.panel1.Size = new System.Drawing.Size(1182, 170);
+            this.panel1.Size = new System.Drawing.Size(1186, 170);
             this.panel1.TabIndex = 3;
             // 
             // txtEmail
@@ -257,108 +339,169 @@
             this.lblUserName.TabIndex = 13;
             this.lblUserName.Text = "Name:";
             // 
-            // stackPanel1
+            // gv_Khach_NV_NhaCC
             // 
-            this.stackPanel1.Appearance.BackColor = System.Drawing.Color.White;
-            this.stackPanel1.Appearance.Options.UseBackColor = true;
-            this.panelInfor.SetColumn(this.stackPanel1, 0);
-            this.stackPanel1.Controls.Add(this.btnThem);
-            this.stackPanel1.Controls.Add(this.btnSua);
-            this.stackPanel1.Controls.Add(this.btnXoa);
-            this.stackPanel1.Controls.Add(this.btnTimKiem);
-            this.stackPanel1.Location = new System.Drawing.Point(3, 3);
-            this.stackPanel1.Name = "stackPanel1";
-            this.panelInfor.SetRow(this.stackPanel1, 0);
-            this.stackPanel1.Size = new System.Drawing.Size(1182, 62);
-            this.stackPanel1.TabIndex = 0;
+            this.panelInfor.SetColumn(this.gv_Khach_NV_NhaCC, 0);
+            this.gv_Khach_NV_NhaCC.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gv_Khach_NV_NhaCC.Location = new System.Drawing.Point(3, 244);
+            this.gv_Khach_NV_NhaCC.MainView = this.grid_Khach_NV_NhaCC;
+            this.gv_Khach_NV_NhaCC.Name = "gv_Khach_NV_NhaCC";
+            this.panelInfor.SetRow(this.gv_Khach_NV_NhaCC, 2);
+            this.gv_Khach_NV_NhaCC.Size = new System.Drawing.Size(1186, 455);
+            this.gv_Khach_NV_NhaCC.TabIndex = 4;
+            this.gv_Khach_NV_NhaCC.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.grid_Khach_NV_NhaCC,
+            this.gridView1});
             // 
-            // btnThem
+            // grid_Khach_NV_NhaCC
             // 
-            this.btnThem.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThem.Appearance.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btnThem.Appearance.Options.UseFont = true;
-            this.btnThem.Appearance.Options.UseForeColor = true;
-            this.btnThem.Appearance.Options.UseTextOptions = true;
-            this.btnThem.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.btnThem.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnThem.ImageOptions.Image = global::QL_Vat_Lieu_Xay_Dung_WinFormApp.Properties.Resources.add_32x322;
-            this.btnThem.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnThem.Location = new System.Drawing.Point(20, -3);
-            this.btnThem.Margin = new System.Windows.Forms.Padding(20, 3, 20, 3);
-            this.btnThem.Name = "btnThem";
-            this.btnThem.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
-            this.btnThem.Size = new System.Drawing.Size(250, 68);
-            this.btnThem.TabIndex = 2;
-            this.btnThem.Text = "Thêm khách hàng,NCC";
+            this.grid_Khach_NV_NhaCC.GridControl = this.gv_Khach_NV_NhaCC;
+            this.grid_Khach_NV_NhaCC.Name = "grid_Khach_NV_NhaCC";
             // 
-            // btnSua
+            // gridView1
             // 
-            this.btnSua.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSua.Appearance.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btnSua.Appearance.Options.UseFont = true;
-            this.btnSua.Appearance.Options.UseForeColor = true;
-            this.btnSua.Appearance.Options.UseTextOptions = true;
-            this.btnSua.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.btnSua.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnSua.ImageOptions.Image = global::QL_Vat_Lieu_Xay_Dung_WinFormApp.Properties.Resources.publicfix_32x32;
-            this.btnSua.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnSua.Location = new System.Drawing.Point(310, -3);
-            this.btnSua.Margin = new System.Windows.Forms.Padding(20, 3, 20, 3);
-            this.btnSua.Name = "btnSua";
-            this.btnSua.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
-            this.btnSua.Size = new System.Drawing.Size(300, 68);
-            this.btnSua.TabIndex = 3;
-            this.btnSua.Text = "Sửa thông tin khách hàng,NCC";
+            this.gridView1.GridControl = this.gv_Khach_NV_NhaCC;
+            this.gridView1.Name = "gridView1";
             // 
-            // btnXoa
+            // panelControl1
             // 
-            this.btnXoa.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnXoa.Appearance.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btnXoa.Appearance.Options.UseFont = true;
-            this.btnXoa.Appearance.Options.UseForeColor = true;
-            this.btnXoa.Appearance.Options.UseTextOptions = true;
-            this.btnXoa.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.btnXoa.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnXoa.ImageOptions.Image = global::QL_Vat_Lieu_Xay_Dung_WinFormApp.Properties.Resources.deletetablerows_32x32;
-            this.btnXoa.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnXoa.Location = new System.Drawing.Point(650, -3);
-            this.btnXoa.Margin = new System.Windows.Forms.Padding(20, 3, 20, 3);
-            this.btnXoa.Name = "btnXoa";
-            this.btnXoa.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
-            this.btnXoa.Size = new System.Drawing.Size(250, 68);
-            this.btnXoa.TabIndex = 4;
-            this.btnXoa.Text = "Xoá khách hàng,NCC";
+            this.panelInfor.SetColumn(this.panelControl1, 1);
+            this.panelControl1.Controls.Add(this.lslSuDung);
+            this.panelControl1.Controls.Add(this.toggleSwitchSuDungAvatar);
+            this.panelControl1.Controls.Add(this.ptrAvatar);
+            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControl1.Location = new System.Drawing.Point(1202, 71);
+            this.panelControl1.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
+            this.panelControl1.Name = "panelControl1";
+            this.panelInfor.SetRow(this.panelControl1, 1);
+            this.panelControl1.Size = new System.Drawing.Size(191, 167);
+            this.panelControl1.TabIndex = 5;
             // 
-            // btnTimKiem
+            // lslSuDung
             // 
-            this.btnTimKiem.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTimKiem.Appearance.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btnTimKiem.Appearance.Options.UseFont = true;
-            this.btnTimKiem.Appearance.Options.UseForeColor = true;
-            this.btnTimKiem.Appearance.Options.UseTextOptions = true;
-            this.btnTimKiem.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.btnTimKiem.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnTimKiem.ImageOptions.Image = global::QL_Vat_Lieu_Xay_Dung_WinFormApp.Properties.Resources.findcustomers_32x32;
-            this.btnTimKiem.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.btnTimKiem.Location = new System.Drawing.Point(940, -3);
-            this.btnTimKiem.Margin = new System.Windows.Forms.Padding(20, 3, 20, 3);
-            this.btnTimKiem.Name = "btnTimKiem";
-            this.btnTimKiem.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
-            this.btnTimKiem.Size = new System.Drawing.Size(250, 68);
-            this.btnTimKiem.TabIndex = 5;
-            this.btnTimKiem.Text = "Tìm kiếm";
+            this.lslSuDung.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lslSuDung.Appearance.Options.UseFont = true;
+            this.lslSuDung.Location = new System.Drawing.Point(17, 130);
+            this.lslSuDung.Name = "lslSuDung";
+            this.lslSuDung.Size = new System.Drawing.Size(59, 18);
+            this.lslSuDung.TabIndex = 10;
+            this.lslSuDung.Text = "Sủ dụng";
+            // 
+            // toggleSwitchSuDungAvatar
+            // 
+            this.toggleSwitchSuDungAvatar.Location = new System.Drawing.Point(99, 127);
+            this.toggleSwitchSuDungAvatar.Name = "toggleSwitchSuDungAvatar";
+            this.toggleSwitchSuDungAvatar.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toggleSwitchSuDungAvatar.Properties.Appearance.Options.UseFont = true;
+            this.toggleSwitchSuDungAvatar.Properties.OffText = "Off";
+            this.toggleSwitchSuDungAvatar.Properties.OnText = "On";
+            this.toggleSwitchSuDungAvatar.Size = new System.Drawing.Size(95, 24);
+            this.toggleSwitchSuDungAvatar.TabIndex = 9;
+            // 
+            // ptrAvatar
+            // 
+            this.ptrAvatar.Location = new System.Drawing.Point(0, 0);
+            this.ptrAvatar.Name = "ptrAvatar";
+            this.ptrAvatar.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            this.ptrAvatar.Size = new System.Drawing.Size(193, 119);
+            this.ptrAvatar.TabIndex = 8;
+            // 
+            // stackPanel2
+            // 
+            this.panelInfor.SetColumn(this.stackPanel2, 1);
+            this.stackPanel2.Controls.Add(this.grpLoaiDoiTuong);
+            this.stackPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.stackPanel2.LayoutDirection = DevExpress.Utils.Layout.StackPanelLayoutDirection.TopDown;
+            this.stackPanel2.Location = new System.Drawing.Point(1195, 244);
+            this.stackPanel2.Name = "stackPanel2";
+            this.panelInfor.SetRow(this.stackPanel2, 2);
+            this.stackPanel2.Size = new System.Drawing.Size(205, 455);
+            this.stackPanel2.TabIndex = 6;
+            // 
+            // grpLoaiDoiTuong
+            // 
+            this.grpLoaiDoiTuong.Controls.Add(this.chkNhaCC);
+            this.grpLoaiDoiTuong.Controls.Add(this.chkNhanVien);
+            this.grpLoaiDoiTuong.Controls.Add(this.chkKhachHang);
+            this.grpLoaiDoiTuong.Controls.Add(this.radioGroup1);
+            this.grpLoaiDoiTuong.Location = new System.Drawing.Point(2, 50);
+            this.grpLoaiDoiTuong.Margin = new System.Windows.Forms.Padding(10, 50, 10, 3);
+            this.grpLoaiDoiTuong.Name = "grpLoaiDoiTuong";
+            this.grpLoaiDoiTuong.Size = new System.Drawing.Size(200, 275);
+            this.grpLoaiDoiTuong.TabIndex = 0;
+            this.grpLoaiDoiTuong.Text = "Loại đối tượng";
+            // 
+            // chkNhaCC
+            // 
+            this.chkNhaCC.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkNhaCC.Appearance.Options.UseFont = true;
+            this.chkNhaCC.Location = new System.Drawing.Point(28, 189);
+            this.chkNhaCC.Name = "chkNhaCC";
+            this.chkNhaCC.Size = new System.Drawing.Size(149, 47);
+            this.chkNhaCC.TabIndex = 3;
+            this.chkNhaCC.Text = "Nhà cung cấp";
+            // 
+            // chkNhanVien
+            // 
+            this.chkNhanVien.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkNhanVien.Appearance.Options.UseFont = true;
+            this.chkNhanVien.Location = new System.Drawing.Point(28, 122);
+            this.chkNhanVien.Name = "chkNhanVien";
+            this.chkNhanVien.Size = new System.Drawing.Size(149, 47);
+            this.chkNhanVien.TabIndex = 2;
+            this.chkNhanVien.Text = "Nhân viên";
+            // 
+            // chkKhachHang
+            // 
+            this.chkKhachHang.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkKhachHang.Appearance.Options.UseFont = true;
+            this.chkKhachHang.Location = new System.Drawing.Point(28, 54);
+            this.chkKhachHang.Name = "chkKhachHang";
+            this.chkKhachHang.Size = new System.Drawing.Size(149, 47);
+            this.chkKhachHang.TabIndex = 1;
+            this.chkKhachHang.Text = "Khách hàng";
+            // 
+            // radioGroup1
+            // 
+            this.radioGroup1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radioGroup1.Location = new System.Drawing.Point(2, 28);
+            this.radioGroup1.Name = "radioGroup1";
+            this.radioGroup1.Size = new System.Drawing.Size(196, 245);
+            this.radioGroup1.TabIndex = 0;
+            // 
+            // panelInfor
+            // 
+            this.panelInfor.Appearance.BackColor = System.Drawing.Color.White;
+            this.panelInfor.Appearance.Options.UseBackColor = true;
+            this.panelInfor.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] {
+            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 89.23F),
+            new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 15.77F)});
+            this.panelInfor.Controls.Add(this.stackPanel2);
+            this.panelInfor.Controls.Add(this.panelControl1);
+            this.panelInfor.Controls.Add(this.gv_Khach_NV_NhaCC);
+            this.panelInfor.Controls.Add(this.panel1);
+            this.panelInfor.Controls.Add(this.stackPanel1);
+            this.panelInfor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelInfor.Location = new System.Drawing.Point(0, 0);
+            this.panelInfor.Margin = new System.Windows.Forms.Padding(3, 3, 30, 3);
+            this.panelInfor.Name = "panelInfor";
+            this.panelInfor.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] {
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 67.59998F),
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 173.2003F),
+            new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F)});
+            this.panelInfor.Size = new System.Drawing.Size(1403, 702);
+            this.panelInfor.TabIndex = 0;
             // 
             // frmKhachHang_NCC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1188, 702);
+            this.ClientSize = new System.Drawing.Size(1403, 702);
             this.Controls.Add(this.panelInfor);
             this.Name = "frmKhachHang_NCC";
             this.Text = "frmKhachHang_NCC";
-            ((System.ComponentModel.ISupportInitialize)(this.gv_KhachHang_NCC)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelInfor)).EndInit();
-            this.panelInfor.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.stackPanel1)).EndInit();
+            this.stackPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).EndInit();
@@ -368,20 +511,38 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtMaUser.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateBirthday.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateBirthday.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stackPanel1)).EndInit();
-            this.stackPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gv_Khach_NV_NhaCC)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grid_Khach_NV_NhaCC)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
+            this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.toggleSwitchSuDungAvatar.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptrAvatar.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stackPanel2)).EndInit();
+            this.stackPanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grpLoaiDoiTuong)).EndInit();
+            this.grpLoaiDoiTuong.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radioGroup1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelInfor)).EndInit();
+            this.panelInfor.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private DevExpress.Utils.Layout.TablePanel panelInfor;
-        private System.Windows.Forms.DataGridView gv_KhachHang_NCC;
+
         private DevExpress.Utils.Layout.StackPanel stackPanel1;
-        private DevExpress.XtraEditors.SimpleButton btnThem;
-        private DevExpress.XtraEditors.SimpleButton btnSua;
-        private DevExpress.XtraEditors.SimpleButton btnXoa;
-        private DevExpress.XtraEditors.SimpleButton btnTimKiem;
+        private DevExpress.Utils.Layout.TablePanel panelInfor;
+        private DevExpress.Utils.Layout.StackPanel stackPanel2;
+        private DevExpress.XtraEditors.GroupControl grpLoaiDoiTuong;
+        private DevExpress.XtraEditors.RadioGroup radioGroup1;
+        private DevExpress.XtraEditors.PanelControl panelControl1;
+        private DevExpress.XtraEditors.LabelControl lslSuDung;
+        private DevExpress.XtraEditors.ToggleSwitch toggleSwitchSuDungAvatar;
+        private DevExpress.XtraEditors.PictureEdit ptrAvatar;
+        private DevExpress.XtraGrid.GridControl gv_Khach_NV_NhaCC;
+        private DevExpress.XtraGrid.Views.Grid.GridView grid_Khach_NV_NhaCC;
         private System.Windows.Forms.Panel panel1;
         private DevExpress.XtraEditors.TextEdit txtEmail;
         private DevExpress.XtraEditors.TextEdit txtTenUser;
@@ -395,5 +556,13 @@
         private DevExpress.XtraEditors.LabelControl lblConfirmEmail;
         private DevExpress.XtraEditors.LabelControl lblEmail;
         private DevExpress.XtraEditors.LabelControl lblUserName;
+        private DevExpress.XtraEditors.SimpleButton btnThem;
+        private DevExpress.XtraEditors.SimpleButton btnSua;
+        private DevExpress.XtraEditors.SimpleButton btnXoa;
+        private DevExpress.XtraEditors.SimpleButton btnTimKiem;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraEditors.CheckButton chkKhachHang;
+        private DevExpress.XtraEditors.CheckButton chkNhaCC;
+        private DevExpress.XtraEditors.CheckButton chkNhanVien;
     }
 }

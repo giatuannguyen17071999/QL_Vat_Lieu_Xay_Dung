@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.txtTrangThai = new DevExpress.XtraEditors.TextEdit();
             this.txtMaDanhMuc = new DevExpress.XtraEditors.TextEdit();
             this.txtTenDanhMuc = new DevExpress.XtraEditors.TextEdit();
             this.lblMaDanhMuc = new DevExpress.XtraEditors.LabelControl();
@@ -42,7 +41,6 @@
             this.btnTimKiem = new DevExpress.XtraEditors.SimpleButton();
             this.stackPanel1 = new DevExpress.Utils.Layout.StackPanel();
             this.tablePanel1 = new DevExpress.Utils.Layout.TablePanel();
-            this.gv_DanhMuc = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnUpload = new DevExpress.XtraEditors.SimpleButton();
             this.lblURL = new System.Windows.Forms.Label();
@@ -50,27 +48,21 @@
             this.lblDanhMucCha = new DevExpress.XtraEditors.LabelControl();
             this.xtraOpenFileDialog1 = new DevExpress.XtraEditors.XtraOpenFileDialog(this.components);
             this.xtraSaveFileDialog1 = new DevExpress.XtraEditors.XtraSaveFileDialog(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.txtTrangThai.Properties)).BeginInit();
+            this.cbTrangThai = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.datagv_DanhMuc = new DevExpress.XtraGrid.GridControl();
+            this.gv_DanhMuc = new DevExpress.XtraGrid.Views.Grid.GridView();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaDanhMuc.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTenDanhMuc.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stackPanel1)).BeginInit();
             this.stackPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel1)).BeginInit();
             this.tablePanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gv_DanhMuc)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cbMaDanhMucCha.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbTrangThai.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datagv_DanhMuc)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gv_DanhMuc)).BeginInit();
             this.SuspendLayout();
-            // 
-            // txtTrangThai
-            // 
-            this.txtTrangThai.Location = new System.Drawing.Point(166, 124);
-            this.txtTrangThai.Name = "txtTrangThai";
-            this.txtTrangThai.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTrangThai.Properties.Appearance.Options.UseFont = true;
-            this.txtTrangThai.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
-            this.txtTrangThai.Size = new System.Drawing.Size(277, 30);
-            this.txtTrangThai.TabIndex = 6;
             // 
             // txtMaDanhMuc
             // 
@@ -238,8 +230,8 @@
             this.tablePanel1.Appearance.Options.UseBackColor = true;
             this.tablePanel1.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] {
             new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 55F)});
+            this.tablePanel1.Controls.Add(this.datagv_DanhMuc);
             this.tablePanel1.Controls.Add(this.stackPanel1);
-            this.tablePanel1.Controls.Add(this.gv_DanhMuc);
             this.tablePanel1.Controls.Add(this.panel1);
             this.tablePanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tablePanel1.Location = new System.Drawing.Point(0, 0);
@@ -252,29 +244,15 @@
             this.tablePanel1.Size = new System.Drawing.Size(979, 755);
             this.tablePanel1.TabIndex = 1;
             // 
-            // gv_DanhMuc
-            // 
-            this.tablePanel1.SetColumn(this.gv_DanhMuc, 0);
-            this.gv_DanhMuc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gv_DanhMuc.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gv_DanhMuc.Location = new System.Drawing.Point(0, 212);
-            this.gv_DanhMuc.Margin = new System.Windows.Forms.Padding(0);
-            this.gv_DanhMuc.Name = "gv_DanhMuc";
-            this.tablePanel1.SetRow(this.gv_DanhMuc, 1);
-            this.gv_DanhMuc.RowHeadersWidth = 51;
-            this.gv_DanhMuc.RowTemplate.Height = 24;
-            this.gv_DanhMuc.Size = new System.Drawing.Size(979, 460);
-            this.gv_DanhMuc.TabIndex = 1;
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.LightSkyBlue;
             this.tablePanel1.SetColumn(this.panel1, 0);
+            this.panel1.Controls.Add(this.cbTrangThai);
             this.panel1.Controls.Add(this.btnUpload);
             this.panel1.Controls.Add(this.lblURL);
             this.panel1.Controls.Add(this.cbMaDanhMucCha);
             this.panel1.Controls.Add(this.lblDanhMucCha);
-            this.panel1.Controls.Add(this.txtTrangThai);
             this.panel1.Controls.Add(this.txtMaDanhMuc);
             this.panel1.Controls.Add(this.txtTenDanhMuc);
             this.panel1.Controls.Add(this.lblMaDanhMuc);
@@ -341,6 +319,36 @@
             // 
             this.xtraSaveFileDialog1.FileName = "xtraSaveFileDialog1";
             // 
+            // cbTrangThai
+            // 
+            this.cbTrangThai.Location = new System.Drawing.Point(166, 125);
+            this.cbTrangThai.Name = "cbTrangThai";
+            this.cbTrangThai.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbTrangThai.Properties.Appearance.Options.UseFont = true;
+            this.cbTrangThai.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
+            this.cbTrangThai.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbTrangThai.Size = new System.Drawing.Size(277, 30);
+            this.cbTrangThai.TabIndex = 12;
+            // 
+            // datagv_DanhMuc
+            // 
+            this.tablePanel1.SetColumn(this.datagv_DanhMuc, 0);
+            this.datagv_DanhMuc.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.datagv_DanhMuc.Location = new System.Drawing.Point(3, 215);
+            this.datagv_DanhMuc.MainView = this.gv_DanhMuc;
+            this.datagv_DanhMuc.Name = "datagv_DanhMuc";
+            this.tablePanel1.SetRow(this.datagv_DanhMuc, 1);
+            this.datagv_DanhMuc.Size = new System.Drawing.Size(973, 454);
+            this.datagv_DanhMuc.TabIndex = 3;
+            this.datagv_DanhMuc.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gv_DanhMuc});
+            // 
+            // gv_DanhMuc
+            // 
+            this.gv_DanhMuc.GridControl = this.datagv_DanhMuc;
+            this.gv_DanhMuc.Name = "gv_DanhMuc";
+            // 
             // frmDanhMucHangHoa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -349,23 +357,23 @@
             this.Controls.Add(this.tablePanel1);
             this.Name = "frmDanhMucHangHoa";
             this.Text = "Danh mục hàng hoá";
-            ((System.ComponentModel.ISupportInitialize)(this.txtTrangThai.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaDanhMuc.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTenDanhMuc.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.stackPanel1)).EndInit();
             this.stackPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tablePanel1)).EndInit();
             this.tablePanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gv_DanhMuc)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cbMaDanhMucCha.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbTrangThai.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datagv_DanhMuc)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gv_DanhMuc)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private DevExpress.XtraEditors.TextEdit txtTrangThai;
         private DevExpress.XtraEditors.TextEdit txtMaDanhMuc;
         private DevExpress.XtraEditors.TextEdit txtTenDanhMuc;
         private DevExpress.XtraEditors.LabelControl lblMaDanhMuc;
@@ -378,7 +386,6 @@
         private DevExpress.XtraEditors.SimpleButton btnTimKiem;
         private DevExpress.Utils.Layout.StackPanel stackPanel1;
         private DevExpress.Utils.Layout.TablePanel tablePanel1;
-        private System.Windows.Forms.DataGridView gv_DanhMuc;
         private System.Windows.Forms.Panel panel1;
         private DevExpress.XtraEditors.ComboBoxEdit cbMaDanhMucCha;
         private DevExpress.XtraEditors.LabelControl lblDanhMucCha;
@@ -386,5 +393,8 @@
         private DevExpress.XtraEditors.XtraOpenFileDialog xtraOpenFileDialog1;
         private DevExpress.XtraEditors.XtraSaveFileDialog xtraSaveFileDialog1;
         private DevExpress.XtraEditors.SimpleButton btnUpload;
+        private DevExpress.XtraEditors.ComboBoxEdit cbTrangThai;
+        private DevExpress.XtraGrid.GridControl datagv_DanhMuc;
+        private DevExpress.XtraGrid.Views.Grid.GridView gv_DanhMuc;
     }
 }

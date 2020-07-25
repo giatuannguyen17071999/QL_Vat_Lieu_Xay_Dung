@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace QL_Vat_Lieu_Xay_Dung_Data_EF.Migrations
 {
-    public partial class initialize : Migration
+    public partial class test : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

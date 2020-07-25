@@ -10,8 +10,8 @@ using QL_Vat_Lieu_Xay_Dung_Data_EF;
 namespace QL_Vat_Lieu_Xay_Dung_Data_EF.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200723115258_initialize")]
-    partial class initialize
+    [Migration("20200724131027_test")]
+    partial class test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
