@@ -30,5 +30,18 @@ namespace QL_Vat_Lieu_Xay_Dung_WinFormApp
         {
             InitializeComponent();
         }
+<<<<<<< Updated upstream
+=======
+
+        private void frmPhanQuyen_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmPhanQuyen_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+        }
+>>>>>>> Stashed changes
     }
 }

@@ -146,6 +146,11 @@
             this.Controls.Add(this.layoutControl);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "frmPhanQuyen";
+<<<<<<< Updated upstream
+=======
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPhanQuyen_FormClosing);
+            this.Load += new System.EventHandler(this.frmPhanQuyen_Load);
+>>>>>>> Stashed changes
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
             this.layoutControl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.datagv_PhanQuyen)).EndInit();

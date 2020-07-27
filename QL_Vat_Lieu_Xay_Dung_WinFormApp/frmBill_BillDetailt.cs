@@ -17,5 +17,60 @@ namespace QL_Vat_Lieu_Xay_Dung_WinFormApp
         {
             InitializeComponent();
         }
+
+        private void frmBill_BillDetailt_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnThemHD_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSuaHD_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnXoaHD_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnBackHD_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnInHD_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnThemCTHD_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSuaCTHD_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnXoaCTHD_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnBackCTHD_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmBill_BillDetailt_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+        }
     }
 }

@@ -28,6 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+<<<<<<< Updated upstream
+=======
+            this.components = new System.ComponentModel.Container();
+>>>>>>> Stashed changes
             this.Container = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormContainer();
             this.accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
             this.accordionControlElement1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -67,6 +71,14 @@
             this.aceManHinh,
             this.acePhanQuyen});
             this.accordionControlElement1.Expanded = true;
+<<<<<<< Updated upstream
+=======
+            this.accordionControlElement1.HeaderTemplate.AddRange(new DevExpress.XtraBars.Navigation.HeaderElementInfo[] {
+            new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.Text),
+            new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.Image),
+            new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.HeaderControl),
+            new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.ContextButtons)});
+>>>>>>> Stashed changes
             this.accordionControlElement1.Name = "accordionControlElement1";
             this.accordionControlElement1.Text = "Account";
             // 
@@ -113,6 +125,11 @@
             this.Name = "frmQuanLy";
             this.NavigationControl = this.accordionControl1;
             this.Text = "frmQuanLy";
+<<<<<<< Updated upstream
+=======
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmQuanLy_FormClosing);
+            this.Load += new System.EventHandler(this.frmQuanLy_Load);
+>>>>>>> Stashed changes
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fluentDesignFormControl1)).EndInit();
             this.ResumeLayout(false);

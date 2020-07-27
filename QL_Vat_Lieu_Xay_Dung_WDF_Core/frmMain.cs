@@ -19,8 +19,12 @@ namespace QL_Vat_Lieu_Xay_Dung_WDF_Core
 
         private void btnDanhSachKhach_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("hi hi");
-           
+
+        }
+
+        private void MenuQuanLy_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
         }
         private void MenuQuanLy_ItemClick(object sender, ItemClickEventArgs e)
         {
